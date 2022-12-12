@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -39,5 +41,9 @@ public class Car {
 
     @Column(name = "amount")
     private double amount;
+
+    @OneToMany(cascade = {CascadeType.ALL},
+            mappedBy = "car")
+    private Set<Reservation> reservationList = new HashSet<>();
 
 }

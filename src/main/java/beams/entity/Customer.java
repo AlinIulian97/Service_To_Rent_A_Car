@@ -5,9 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -18,6 +17,7 @@ import javax.persistence.Id;
 public class Customer {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name="first_name")
@@ -31,5 +31,9 @@ public class Customer {
 
     @Column
     private String address;
+
+    @OneToMany(cascade = {CascadeType.ALL} ,
+            mappedBy = "customer")
+    private List<Reservation> customerReservation;
 
 }

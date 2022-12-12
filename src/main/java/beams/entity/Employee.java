@@ -16,18 +16,23 @@ import javax.persistence.*;
 public class Employee {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Enumerated(EnumType.STRING)
     private EmployeeEnum type;
 
-    @Column(name="first_name")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name=("last_name"))
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name=("position"))
+    @Column(name = "position")
     private String position;
+
+    @OneToOne(mappedBy = "employee",
+            cascade = {CascadeType.ALL})
+    private Branch branch;
 
 }
