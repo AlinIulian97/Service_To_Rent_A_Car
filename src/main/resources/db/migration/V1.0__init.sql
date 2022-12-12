@@ -19,3 +19,8 @@
         email varchar(255),
         address varchar(255)
         );
+
+        create table revenue(
+        id integer not null,
+        car_rental_amount integer
+        )
