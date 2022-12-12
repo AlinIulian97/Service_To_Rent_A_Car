@@ -20,5 +20,5 @@ public class Revenue {
     private Integer id;
 
     @Column(name = "car_rental_amount")
-    private int carRentalAmount;
+    private double carRentalAmount;
 }

@@ -4,10 +4,7 @@ package beams.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -24,7 +21,9 @@ public class Reservation {
     //    @ManyToOne
 //    private Customer customer;
 
-    @Column
+
+    @OneToOne
+    @JoinColumn(name="fk_car_id", referencedColumnName = "id")
     private Car car;
 
     @Column(name="date_from")

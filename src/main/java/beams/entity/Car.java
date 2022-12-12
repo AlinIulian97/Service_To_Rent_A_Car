@@ -16,7 +16,8 @@ import javax.persistence.*;
 public class Car {
 
     @Id
-    private Integer idCar;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(name = "car_name")
     private String carName;
