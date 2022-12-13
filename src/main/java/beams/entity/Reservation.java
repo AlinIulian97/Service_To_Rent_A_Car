@@ -21,15 +21,6 @@ public class Reservation {
     @Future
     private Date dateOfReservation;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name ="car_id" , referencedColumnName = "id")
-    private Car car;
-
-    @ManyToOne(fetch =FetchType.LAZY )
-    @JoinColumn(name ="customer_id", referencedColumnName = "id")
-    private Customer customer;
-
-
     @Column(name="date_from")
     private Date dateFrom;
 
@@ -38,6 +29,18 @@ public class Reservation {
 
     @Column
     private double amount;
+
+    @OneToOne(mappedBy = "reservation" ,
+            cascade = CascadeType.ALL)
+    private Refund refund;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="car_id" , referencedColumnName = "id")
+    private Car car;
+
+    @ManyToOne(fetch =FetchType.LAZY )
+    @JoinColumn(name ="customer_id", referencedColumnName = "id")
+    private Customer customer;
 
 
 }

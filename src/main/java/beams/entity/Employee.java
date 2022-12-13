@@ -31,8 +31,14 @@ public class Employee {
     @Column(name = "position")
     private String position;
 
+
     @OneToOne(mappedBy = "employee",
             cascade = {CascadeType.ALL})
     private Branch branch;
+
+
+    @OneToOne(mappedBy = "employee" ,
+            cascade = CascadeType.ALL)
+    private Refund refund;
 
 }

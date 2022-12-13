@@ -21,6 +21,9 @@ public class Rental {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "internet_domain")
+    private String internetDomain;
+
     @Column(name = "name_rental")
     private String nameRental;
 

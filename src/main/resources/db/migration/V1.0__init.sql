@@ -40,6 +40,7 @@
           id integer not null,
                 type varchar(255),
                  name_rental varchar(255),
+                 internet_domain varchar(255),
                  contact_address varchar(255),
                  owner varchar(255),
                  logo_type varchar(255),
@@ -58,24 +59,39 @@
                 create table employee
                 (
                  id integer not null,
-                       type varchar(255),
-                        first_name varchar(255),
-                        last_name varchar(255),
-                        colour varchar(255),
-                        position varchar(255),
-                        primary key (id)
+                 type varchar(255),
+                 first_name varchar(255),
+                 last_name varchar(255),
+                 colour varchar(255),
+                 position varchar(255),
+                 primary key (id)
                 );
-                  create table revenue
+
+                 create table revenue
                         (
                         id integer not null,
                         car_rental_amount double precision
                         );
 
-               create table employee_work_branch
-               (
-               branch_id integer NOT NULL,
-               employee_id integer NOT NULL,
-               PRIMARY KEY (branch_id , employee_id ),
-               FOREIGN KEY (`branch_id`) REFERENCES `branch`(id),
-               FOREIGN KEY (`employee_id`) REFERENCES `employee`(id)
-                );
+
+      create table  refund
+      (
+      id integer not null,
+      return_date datetime(6),
+      surcharge double,
+      comments varchar(255),
+      fk_employee_id integer NOT NULL,
+      fk_reservation_id integer NOT NULL,
+      primary key(id),
+      FOREIGN key (`fk_reservation_id`) references `reservation`(id),
+      FOREIGN KEY (`fk_employee_id`) REFERENCES `employee`(id)
+      );
+
+         create table employee_work_branch
+                     (
+                     branch_id integer NOT NULL,
+                     employee_id integer NOT NULL,
+                     PRIMARY KEY (branch_id , employee_id ),
+                     FOREIGN KEY (`branch_id`) REFERENCES `branch`(id),
+                     FOREIGN KEY (`employee_id`) REFERENCES `employee`(id)
+                      );
