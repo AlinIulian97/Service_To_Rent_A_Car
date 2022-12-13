@@ -62,8 +62,6 @@
                  type varchar(255),
                  first_name varchar(255),
                  last_name varchar(255),
-                 colour varchar(255),
-                 position varchar(255),
                  primary key (id)
                 );
 
@@ -86,6 +84,9 @@
       FOREIGN key (`fk_reservation_id`) references `reservation`(id),
       FOREIGN KEY (`fk_employee_id`) REFERENCES `employee`(id)
       );
+
+
+
 
          create table employee_work_branch
                      (

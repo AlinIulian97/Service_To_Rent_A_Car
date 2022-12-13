@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Enumerated(EnumType.STRING)
@@ -27,10 +27,6 @@ public class Employee {
 
     @Column(name = "last_name")
     private String lastName;
-
-    @Column(name = "position")
-    private String position;
-
 
     @OneToOne(mappedBy = "employee",
             cascade = {CascadeType.ALL})
