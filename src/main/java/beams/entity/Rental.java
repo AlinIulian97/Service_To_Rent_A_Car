@@ -18,7 +18,7 @@ import java.util.List;
 public class Rental {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "internet_domain")
