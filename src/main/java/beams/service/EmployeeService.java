@@ -1,6 +1,9 @@
 package beams.service;
 
 import beams.entity.Employee;
+import beams.mapper.EmployeeMapper;
+import beams.model.employee.EmployeeRequest;
+import beams.model.employee.EmployeeResponse;
 import beams.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,8 +16,11 @@ import javax.transaction.Transactional;
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final EmployeeMapper employeeMapper;
 
-    public void saveEmployee(Employee employee){
-        employeeRepository.save(employee);
+    public EmployeeResponse saveEmployee(EmployeeRequest employeeRequest){
+        Employee employee=employeeMapper.map(employeeRequest);
+        return employeeMapper.map(employeeRepository.save(employee));
+
     }
 }
