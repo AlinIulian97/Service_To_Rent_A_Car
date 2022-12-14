@@ -36,10 +36,6 @@ public class Reservation {
     @Column
     private double amount;
 
-    @OneToOne(mappedBy = "reservation",
-            cascade = CascadeType.ALL)
-    private Refund refund;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car car;
@@ -47,6 +43,11 @@ public class Reservation {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
+
+
+    @OneToOne(mappedBy = "reservation",
+            cascade = CascadeType.ALL)
+    private Refund refund;
 
 
 }
