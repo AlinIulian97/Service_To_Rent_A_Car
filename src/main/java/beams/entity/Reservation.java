@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Getter
@@ -22,15 +22,12 @@ public class Reservation {
     private Integer id;
 
     @Column(name = "date_of_reservation")
-    @JsonFormat(pattern = "MM/dd/yyyy")
-    private Date dateOfReservation;
+    private java.sql.Date dateOfReservation;
 
     @Column(name = "date_from")
-    @JsonFormat(pattern = "MM/dd/yyyy")
-    private Date dateFrom;
+    private java.sql.Date dateFrom;
 
     @Column(name = "date_to")
-    @JsonFormat(pattern = "MM/dd/yyyy")
     private Date dateTo;
 
     @Column

@@ -1,6 +1,8 @@
 package beams.controller;
 
 import beams.entity.Reservation;
+import beams.model.reservation.ReservationRequest;
+import beams.model.reservation.ReservationResponse;
 import beams.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +16,7 @@ public class ReservationController {
     private final ReservationService reservationService;
 
     @PostMapping("/saveReservation")
-    public void saveReservation(@RequestBody Reservation reservation) {
-        reservationService.saveReservation(reservation);
+    public ReservationResponse saveReservation(@RequestBody ReservationRequest reservationRequest) {
+        return reservationService.saveReservation(reservationRequest);
     }
 }

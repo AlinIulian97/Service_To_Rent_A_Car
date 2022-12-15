@@ -4,6 +4,11 @@ import beams.entity.Car;
 import beams.entity.Customer;
 import beams.entity.Reservation;
 import beams.exception.BusinessException;
+import beams.mapper.ReservationMapper;
+import beams.model.car.CarResponseForReservation;
+import beams.model.customer.CustomerResponseForReservation;
+import beams.model.reservation.ReservationRequest;
+import beams.model.reservation.ReservationResponse;
 import beams.repository.CarRepository;
 import beams.repository.CustomerRepository;
 import beams.repository.ReservationRepository;
@@ -21,20 +26,42 @@ public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final CarRepository carRepository;
     private final CustomerRepository customerRepository;
+    private final ReservationMapper reservationMapper;
 
-    public void saveReservation(Reservation reservation) {
-        Customer customer  = customerRepository.findById(reservation.getCustomer().getId()).orElseThrow(
-                () -> new RuntimeException("Customer don't found")
 
-   );
+    public ReservationResponse saveReservation(ReservationRequest reservationRequest) {
 
-        Car car  = carRepository.findById(reservation.getCar().getId()).orElseThrow(
-                () -> new BusinessException("Car don't found")
-        );
+        Reservation reservationToSave = reservationMapper.map(reservationRequest);
+        reservationToSave.setCar(carRepository.findById(reservationRequest.getCarId()).orElseThrow(
+                () -> new BusinessException("Car not found")));
 
-        reservation.getCar().setId(car.getId());
-        reservation.getCustomer().setId(car.getId());
+        Customer customer = customerRepository.findById(reservationRequest.getCustomerId()).orElseThrow(
+                () -> new BusinessException("Customer not found")) ;
+        reservationToSave.setCustomer(customer);
 
-        reservationRepository.save(reservation);
+        reservationRepository.save(reservationToSave);
+
+        ReservationResponse reservationForResponse = new ReservationResponse();
+
+        reservationForResponse.setId(reservationToSave.getId());
+        reservationForResponse.setDateFrom(reservationToSave.getDateFrom());
+        reservationForResponse.setDateOfReservation(reservationToSave.getDateOfReservation());
+        reservationForResponse.setDateTo(reservationToSave.getDateTo());
+        reservationForResponse.setAmount(reservationToSave.getAmount());
+
+        CarResponseForReservation carResponse = new CarResponseForReservation();
+        carResponse.setId(reservationToSave.getCar().getId());
+        carResponse.setCarName(reservationToSave.getCar().getCarName());
+        carResponse.setStatus(reservationToSave.getCar().getStatus());
+
+        CustomerResponseForReservation customerResponse = new CustomerResponseForReservation();
+        customerResponse.setId(reservationToSave.getCustomer().getId());
+        customerResponse.setName((reservationToSave.getCustomer().getName()));
+        customerResponse.setFirstName(reservationToSave.getCustomer().getFirstName());
+
+             reservationForResponse.setCar(carResponse);
+             reservationForResponse.setCustomer(customerResponse);
+
+             return reservationForResponse ;
     }
 }
