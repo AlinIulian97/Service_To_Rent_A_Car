@@ -8,7 +8,10 @@
         colour varchar(255),
         mileage integer,
         model varchar(255),
-        primary key (id)
+        primary key (id),
+        fk_branch_id integer not null,
+        FOREIGN Key fk_branch_id REFERENCES branch(id)
+
         );
 
   create table customer
@@ -52,8 +55,11 @@
                id integer not null,
                 address_city varchar(255),
                 fk_rental_id integer not null,
+                fk_employee_id integer not null,
                 primary key (id),
                 foreign key(fk_rental_id) references rental(id)
+                foreign key(fk_employee_id) references employee(id)
+
                 );
 
                 create table employee
@@ -63,6 +69,8 @@
                  first_name varchar(255),
                  last_name varchar(255),
                  primary key (id)
+                 fk_branch_id_id integer not null,
+                 FOREIGN Key fk_branch_id REFERENCES branch(id)
                 );
 
                  create table revenue
@@ -88,11 +96,11 @@
 
 
 
-         create table employee_work_branch
-                     (
-                     branch_id integer NOT NULL,
-                     employee_id integer NOT NULL,
-                     PRIMARY KEY (branch_id , employee_id ),
-                     FOREIGN KEY (`branch_id`) REFERENCES `branch`(id),
-                     FOREIGN KEY (`employee_id`) REFERENCES `employee`(id)
-                      );
+--         create table employee_work_branch
+--                     (
+--                     branch_id integer NOT NULL,
+--                     employee_id integer NOT NULL,
+--                     PRIMARY KEY (branch_id , employee_id ),
+--                     FOREIGN KEY (`branch_id`) REFERENCES `branch`(id),
+--                     FOREIGN KEY (`employee_id`) REFERENCES `employee`(id)
+--                      );

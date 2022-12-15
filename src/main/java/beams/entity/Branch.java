@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,13 +26,21 @@ public class Branch {
     @JoinColumn(name = "fk_rental_id", referencedColumnName = "id")
     private Rental rental;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "employee_work_branch",
-            joinColumns =
-                    {@JoinColumn(name = "branch_id", referencedColumnName = "id")},
-            inverseJoinColumns =
-                    {@JoinColumn(name = "employee_id", referencedColumnName = "id")})
-    private Employee employee;
+    @OneToMany(cascade = {CascadeType.ALL},
+    mappedBy = "branch")
+    private List<Employee> employeeList;
+
+    @OneToMany(cascade = {CascadeType.ALL},
+            mappedBy = "branch")
+    private List<Car> carsList;
+
 
 
 }
+
+
+//    @JoinTable(name = "employee_work_branch",
+//            joinColumns =
+//                    {@JoinColumn(name = "branch_id", referencedColumnName = "id")},
+//            inverseJoinColumns =
+//                    {@JoinColumn(name = "employee_id", referencedColumnName = "id")})

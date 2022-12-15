@@ -41,9 +41,12 @@ public class Car {
     @Column(name = "model")
     private String model;
 
-
     @OneToMany(cascade = {CascadeType.ALL},
             mappedBy = "car")
     private Set<Reservation> reservationList = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="fk_branch_id", referencedColumnName = "id")
+    private Branch branch;
 
 }

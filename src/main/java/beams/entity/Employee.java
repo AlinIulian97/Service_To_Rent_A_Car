@@ -28,13 +28,12 @@ public class Employee {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToOne(mappedBy = "employee",
-            cascade = {CascadeType.ALL})
-    private Branch branch;
-
-
     @OneToOne(mappedBy = "employee" ,
             cascade = CascadeType.ALL)
     private Refund refund;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="fk_branch_id", referencedColumnName = "id")
+    private Branch branch;
 
 }
