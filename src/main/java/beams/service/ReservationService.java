@@ -32,6 +32,7 @@ public class ReservationService {
     public ReservationResponse saveReservation(ReservationRequest reservationRequest) {
 
         Reservation reservationToSave = reservationMapper.map(reservationRequest);
+
         reservationToSave.setCar(carRepository.findById(reservationRequest.getCarId()).orElseThrow(
                 () -> new BusinessException("Car not found")));
 
