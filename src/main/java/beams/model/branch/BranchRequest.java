@@ -10,5 +10,11 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class BranchRequest {
+
     private Integer id;
+
+    private String addressCity;
+
+    private Integer rentalId;
+
 }

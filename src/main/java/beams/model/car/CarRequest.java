@@ -37,5 +37,6 @@ public class CarRequest {
     @NotBlank(message = "Invalid  model")
     private String model;
 
+    private Integer branchId;
 
 }

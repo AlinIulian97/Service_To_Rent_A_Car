@@ -2,8 +2,7 @@ package beams.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 @Getter
@@ -12,6 +11,7 @@ import java.sql.Date;
 @RequiredArgsConstructor
 @Builder
 @ToString
+@Entity
 public class Loan {
 
     @Id
@@ -20,8 +20,12 @@ public class Loan {
     @Column(name = "date_of_rental")
     private Date dateOfRental;
 
-    private Employee employee;
-
-    private Reservation reservation;
+//    @OneToMany
+//    @Column(name = "employee_id")
+//    private Employee employee;
+//
+//    @OneToMany
+//    @Column(name = "reservation_id")
+//    private Reservation reservation;
 
 }

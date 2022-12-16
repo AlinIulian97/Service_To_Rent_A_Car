@@ -1,11 +1,8 @@
 package beams.model.car;
 
 import beams.entity.enums.CarStatusEnum;
+import beams.model.branch.BranchResponseForeCarResponse;
 import lombok.Data;
-
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.validation.constraints.NotBlank;
 
 @Data
 public class CarResponse {
@@ -18,4 +15,5 @@ public class CarResponse {
     private String colour;
     private int mileage;
     private String model;
+    private BranchResponseForeCarResponse branchResponseForeCar;
 }
