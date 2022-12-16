@@ -2,6 +2,7 @@ package beams.service;
 
 
 import beams.entity.Rental;
+import beams.exception.BusinessException;
 import beams.mapper.RentalMapper;
 import beams.model.rental.RentalRequest;
 import beams.model.rental.RentalResponse;
@@ -20,10 +21,15 @@ public class RentalService {
 
     private final RentalMapper rentalMapper;
 
-
-
     public RentalResponse addRental(RentalRequest rentalRequest){
         Rental rental =rentalMapper.map(rentalRequest);
         return rentalMapper.map(rentalRepository.save(rental));
+    }
+
+    public void deleteRental(Integer id){
+        Rental rentalToDelete =rentalRepository.findById(id).orElseThrow(
+                ()-> new BusinessException("Rental not found")
+        );
+        rentalRepository.delete(rentalToDelete);
     }
 }

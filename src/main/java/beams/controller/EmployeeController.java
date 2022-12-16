@@ -5,9 +5,7 @@ import beams.model.employee.EmployeeRequest;
 import beams.model.employee.EmployeeResponse;
 import beams.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,5 +16,10 @@ public class EmployeeController {
     @PostMapping("/saveEmployee")
     public EmployeeResponse saveEmployee(@RequestBody EmployeeRequest employeeRequest){
       return  employeeService.saveEmployee(employeeRequest);
+    }
+
+    @DeleteMapping("deleteEmployee/{id}")
+    public void EmployeeToDelete(@PathVariable  Integer id){
+        employeeService.deleteEmployee(id);
     }
 }

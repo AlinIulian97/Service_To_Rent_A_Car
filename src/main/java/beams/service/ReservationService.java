@@ -65,4 +65,11 @@ public class ReservationService {
 
              return reservationForResponse ;
     }
+
+    public void deleteReservation(Integer id){
+        Reservation reservationToDelete =reservationRepository.findById(id).orElseThrow(
+                () -> new BusinessException("Reservation not found")
+        );
+        reservationRepository.delete(reservationToDelete);
+    }
 }

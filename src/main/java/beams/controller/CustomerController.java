@@ -4,9 +4,7 @@ import beams.model.customer.CustomerRequest;
 import beams.model.customer.CustomerResponse;
 import beams.service.CustomerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -20,5 +18,8 @@ public class CustomerController {
         return customerService.saveCustomer(customerRequest);
     }
 
-
+@DeleteMapping("deleteCustomer/{id}")
+    public void deleteCustomer(@PathVariable  Integer id){
+        customerService.deleteCustomer(id);
+}
 }

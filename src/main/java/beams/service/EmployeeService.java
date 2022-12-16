@@ -1,6 +1,7 @@
 package beams.service;
 
 import beams.entity.Employee;
+import beams.exception.BusinessException;
 import beams.mapper.EmployeeMapper;
 import beams.model.employee.EmployeeRequest;
 import beams.model.employee.EmployeeResponse;
@@ -21,6 +22,12 @@ public class EmployeeService {
     public EmployeeResponse saveEmployee(EmployeeRequest employeeRequest){
         Employee employee=employeeMapper.map(employeeRequest);
         return employeeMapper.map(employeeRepository.save(employee));
+    }
 
+    public void deleteEmployee(Integer id){
+        Employee employeeToDelete =employeeRepository.findById(id).orElseThrow(
+                () -> new BusinessException("Employee not found")
+        );
+        employeeRepository.delete(employeeToDelete);
     }
 }

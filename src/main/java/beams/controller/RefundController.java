@@ -4,9 +4,7 @@ import beams.model.refund.RefundRequest;
 import beams.model.refund.RefundResponse;
 import beams.service.RefundService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,6 +15,10 @@ public class RefundController {
     @PostMapping("/saveRefund")
     public RefundResponse saveRefund (@RequestBody RefundRequest refundRequest){
         return refundService.saveRefund(refundRequest);
+    }
 
+    @DeleteMapping("deleteRefund/{id}")
+    public void deleteRefund (@PathVariable  Integer id){
+        refundService.deleteRefund(id);
     }
 }

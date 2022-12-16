@@ -63,4 +63,11 @@ public class RefundService {
         return refundResponse;
     }
 
+    public void deleteRefund(Integer id ){
+        Refund refundToDelete = refundRepository.findById(id).orElseThrow(
+                ()-> new BusinessException("Refund not Found")
+        );
+        refundRepository.delete(refundToDelete);
+    }
+
 }

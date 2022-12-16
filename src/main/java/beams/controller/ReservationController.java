@@ -1,13 +1,10 @@
 package beams.controller;
 
-import beams.entity.Reservation;
 import beams.model.reservation.ReservationRequest;
 import beams.model.reservation.ReservationResponse;
 import beams.service.ReservationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,5 +15,10 @@ public class ReservationController {
     @PostMapping("/saveReservation")
     public ReservationResponse saveReservation(@RequestBody ReservationRequest reservationRequest) {
         return reservationService.saveReservation(reservationRequest);
+    }
+
+    @DeleteMapping("deleteReservation/{id}")
+    public void deleteReservation(@PathVariable Integer id){
+        reservationService.deleteReservation(id);
     }
 }

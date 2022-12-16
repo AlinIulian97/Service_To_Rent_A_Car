@@ -4,9 +4,7 @@ import beams.model.car.CarRequest;
 import beams.model.car.CarResponse;
 import beams.service.CarService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -17,6 +15,10 @@ public class CarController {
     @PostMapping("/add")
     public CarResponse addCar (@RequestBody @Valid CarRequest carRequest){
         return carService.saveCar(carRequest);
+    }
 
+    @DeleteMapping("deleteCar/{id}")
+    public void deleteCar(@PathVariable Integer id){
+        carService.delete(id);
     }
 }

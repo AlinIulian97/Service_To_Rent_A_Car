@@ -24,8 +24,13 @@ public class CarService {
         checkDuplicate(carRequest);
         Car car = carMapper.map(carRequest);
         return carMapper.map(carRepository.save(car));
+    }
 
-
+    public void delete(Integer id){
+        Car carToDelete =carRepository.findById(id).orElseThrow(
+                () -> new BusinessException("Car id not found")
+        );
+        carRepository.delete(carToDelete);
     }
     public void checkDuplicate(CarRequest carRequest) {
         for (Car car : carRepository.findAll()) {
