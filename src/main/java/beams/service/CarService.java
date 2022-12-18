@@ -4,12 +4,13 @@ package beams.service;
 import beams.entity.Car;
 import beams.exception.BusinessException;
 import beams.mapper.CarMapper;
-import beams.model.branch.BranchResponseForeCarResponse;
 import beams.model.car.CarRequest;
 import beams.model.car.CarResponse;
 import beams.repository.BranchRepository;
 import beams.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,6 +19,7 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class CarService {
 
     private final CarRepository carRepository;
@@ -25,51 +27,40 @@ public class CarService {
 
     private final BranchRepository branchRepository;
 
-    public CarResponse saveCar(CarRequest carRequest){
+    public CarResponse saveCar(CarRequest carRequest) {
         checkDuplicate(carRequest);
         Car carToSave = carMapper.map(carRequest);
 
         carToSave.setBranch(branchRepository.findById(carRequest.getBranchId()).orElseThrow(
-                ()-> new BusinessException("Branch not found")
+                () -> new BusinessException("Branch not found")
         ));
 
         carRepository.save(carToSave);
 
-        CarResponse carForResponse = new CarResponse();
-        carForResponse.setCarName(carToSave.getCarName());
-        carForResponse.setId(carToSave.getId());
-        carForResponse.setColour(carToSave.getColour());
-        carForResponse.setAmount(carToSave.getAmount());
-        carForResponse.setMileage(carToSave.getMileage());
-        carForResponse.setBodyType(carToSave.getBodyType());
-        carForResponse.setModel(carToSave.getModel());
-        carForResponse.setStatus(carToSave.getStatus());
-
-        BranchResponseForeCarResponse branchResponseForeCarResponse = new BranchResponseForeCarResponse();
-        branchResponseForeCarResponse.setId(carToSave.getBranch().getId());
-        branchResponseForeCarResponse.setAddressCity(carToSave.getBranch().getAddressCity());
-
-        carForResponse.setBranchResponseForeCar(branchResponseForeCarResponse);
-
-        return carForResponse;
+        return carMapper.map(carToSave);
     }
 
-    public void delete(Integer id){
-        Car carToDelete =carRepository.findById(id).orElseThrow(
+    public void delete(Integer id) {
+        Car carToDelete = carRepository.findById(id).orElseThrow(
                 () -> new BusinessException("Car id not found")
         );
         carRepository.delete(carToDelete);
     }
 
-    public List<CarResponse> getAllCars (){
-        return  carMapper.map(carRepository.findAll());
+    public List<CarResponse> getAllCars() {
+        return carMapper.map(carRepository.findAll());
     }
 
-    public void printCarList(List<CarResponse> listToPrint){
-        listToPrint =carMapper.map(carRepository.findAll());
-        for(CarResponse carResponse : listToPrint){
-            System.out.println(carResponse);
-        }
+    public void printCarList(List<CarResponse> listToPrint) {
+     carMapper.map(carRepository.findAll()).forEach(carResponse -> {
+         log.info(String.valueOf(carResponse));
+     });
+    }
+
+    public CarResponse findById(Integer id){
+
+    return  carMapper.map(carRepository.findById(id).orElseThrow(
+            ()-> new BusinessException("No car found")));
     }
 
     public void checkDuplicate(CarRequest carRequest) {

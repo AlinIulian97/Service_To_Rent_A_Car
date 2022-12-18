@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -28,11 +29,13 @@ public class Branch {
 
     @OneToMany(cascade = {CascadeType.ALL},
     mappedBy = "branch")
-    private List<Employee> employeeList;
+    private final List<Employee> employees = new ArrayList<>();
+
+// Un branch o lista
 
     @OneToMany(cascade = {CascadeType.ALL},
             mappedBy = "branch")
-    private List<Car> carsList;
+    private final List<Car> cars = new ArrayList<>();
 
 
 

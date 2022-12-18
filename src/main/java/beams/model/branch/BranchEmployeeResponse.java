@@ -3,8 +3,6 @@ package beams.model.branch;
 import lombok.Data;
 
 @Data
-public class BranchResponseForeCarResponse {
-
+public class BranchEmployeeResponse {
     private Integer id;
-    private String addressCity;
 }

@@ -27,4 +27,6 @@ public class EmployeeRequest {
 
     @Enumerated(EnumType.STRING)
     EmployeeEnum type ;
+
+    private Integer branchId;
 }

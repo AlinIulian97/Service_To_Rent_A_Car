@@ -37,7 +37,7 @@ public class ReservationService {
                 () -> new BusinessException("Car not found")));
 
         Customer customer = customerRepository.findById(reservationRequest.getCustomerId()).orElseThrow(
-                () -> new BusinessException("Customer not found")) ;
+                () -> new BusinessException("Customer not found"));
         reservationToSave.setCustomer(customer);
 
         reservationRepository.save(reservationToSave);
@@ -60,14 +60,14 @@ public class ReservationService {
         customerResponse.setName((reservationToSave.getCustomer().getName()));
         customerResponse.setFirstName(reservationToSave.getCustomer().getFirstName());
 
-             reservationForResponse.setCar(carResponse);
-             reservationForResponse.setCustomer(customerResponse);
+        reservationForResponse.setCar(carResponse);
+        reservationForResponse.setCustomer(customerResponse);
 
-             return reservationForResponse ;
+        return reservationForResponse;
     }
 
-    public void deleteReservation(Integer id){
-        Reservation reservationToDelete =reservationRepository.findById(id).orElseThrow(
+    public void deleteReservation(Integer id) {
+        Reservation reservationToDelete = reservationRepository.findById(id).orElseThrow(
                 () -> new BusinessException("Reservation not found")
         );
         reservationRepository.delete(reservationToDelete);

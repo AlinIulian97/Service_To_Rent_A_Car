@@ -1,106 +1,89 @@
-  create table car
-  (
-       id integer not null,
-        status varchar(255),
-        amount double precision,
-        body_type varchar(255),
-        car_name varchar(255),
-        colour varchar(255),
-        mileage integer,
-        model varchar(255),
-        primary key (id),
-        fk_branch_id integer not null,
-        FOREIGN Key fk_branch_id REFERENCES branch(id)
+CREATE TABLE car (
+	id INTEGER NOT NULL
+	,STATUS VARCHAR(255)
+	,amount DOUBLE PRECISION
+	,body_type VARCHAR(255)
+	,car_name VARCHAR(255)
+	,colour VARCHAR(255)
+	,mileage INTEGER
+	,model VARCHAR(255)
+	,PRIMARY KEY (id)
+	,fk_branch_id INTEGER NOT NULL
+	,FOREIGN KEY fk_branch_id REFERENCES branch(id)
+	);
 
-        );
+CREATE TABLE customer (
+	id INTEGER NOT NULL
+	,first_name VARCHAR(255)
+	,name VARCHAR(255)
+	,email VARCHAR(255)
+	,address VARCHAR(255)
+	,PRIMARY KEY (id)
+	);
 
-  create table customer
-        (
-        id integer not null,
-        first_name varchar(255),
-        name varchar(255),
-        email varchar(255),
-        address varchar(255),
-        primary key (id)
-        );
+CREATE TABLE reservation (
+	id INTEGER NOT NULL
+	,date_of_reservation DATETIME (6)
+	,date_from DATETIME (6)
+	,date_to DATETIME (6)
+	,amount DOUBLE
+	,PRIMARY KEY (id)
+	,car_id INTEGER NOT NULL
+	,customer_id INTEGER NOT NULL
+	,FOREIGN KEY (car_id) REFERENCES car(id)
+	,FOREIGN KEY (customer_id) REFERENCES customer(id)
+	);
 
-   CREATE TABLE reservation
-                (
-                id integer not null,
-                date_of_reservation datetime(6),
-                date_from datetime(6),
-                date_to datetime(6),
-                amount double,
-                primary key (id),
-                car_id integer not null,
-                customer_id integer not null,
-                foreign key(car_id) references car(id),
-                foreign key(customer_id) references customer(id)
-                );
+CREATE TABLE rental (
+	id INTEGER NOT NULL
+	,type VARCHAR(255)
+	,name_rental VARCHAR(255)
+	,internet_domain VARCHAR(255)
+	,contact_address VARCHAR(255)
+	,OWNER VARCHAR(255)
+	,logo_type VARCHAR(255)
+	,PRIMARY KEY (id)
+	);
 
-         create table rental
-         (
-          id integer not null,
-                type varchar(255),
-                 name_rental varchar(255),
-                 internet_domain varchar(255),
-                 contact_address varchar(255),
-                 owner varchar(255),
-                 logo_type varchar(255),
-                 primary key (id)
-         );
+CREATE TABLE branch (
+	id INTEGER NOT NULL
+	,address_city VARCHAR(255)
+	,fk_rental_id INTEGER NOT NULL
+	,fk_employee_id INTEGER NOT NULL
+	,PRIMARY KEY (id)
+	,FOREIGN KEY (fk_rental_id) REFERENCES rental(id) FOREIGN KEY (fk_employee_id) REFERENCES employee(id)
+	);
 
-          create table branch
-          (
-               id integer not null,
-                address_city varchar(255),
-                fk_rental_id integer not null,
-                fk_employee_id integer not null,
-                primary key (id),
-                foreign key(fk_rental_id) references rental(id)
-                foreign key(fk_employee_id) references employee(id)
+CREATE TABLE employee (
+	id INTEGER NOT NULL
+	,type VARCHAR(255)
+	,first_name VARCHAR(255)
+	,last_name VARCHAR(255)
+	,PRIMARY KEY (id) fk_branch_id_id INTEGER NOT NULL
+	,FOREIGN KEY fk_branch_id REFERENCES branch(id)
+	);
 
-                );
+CREATE TABLE revenue (
+	id INTEGER NOT NULL
+	,car_rental_amount DOUBLE PRECISION
+	);
 
-                create table employee
-                (
-                 id integer not null,
-                 type varchar(255),
-                 first_name varchar(255),
-                 last_name varchar(255),
-                 primary key (id)
-                 fk_branch_id_id integer not null,
-                 FOREIGN Key fk_branch_id REFERENCES branch(id)
-                );
-
-                 create table revenue
-                        (
-                        id integer not null,
-                        car_rental_amount double precision
-                        );
-
-
-      create table  refund
-      (
-      id integer not null,
-      return_date datetime(6),
-      surcharge double,
-      comments varchar(255),
-      fk_employee_id integer NOT NULL,
-      fk_reservation_id integer NOT NULL,
-      primary key(id),
-      FOREIGN key (`fk_reservation_id`) references `reservation`(id),
-      FOREIGN KEY (`fk_employee_id`) REFERENCES `employee`(id)
-      );
-
-
-
-
---         create table employee_work_branch
---                     (
---                     branch_id integer NOT NULL,
---                     employee_id integer NOT NULL,
---                     PRIMARY KEY (branch_id , employee_id ),
---                     FOREIGN KEY (`branch_id`) REFERENCES `branch`(id),
---                     FOREIGN KEY (`employee_id`) REFERENCES `employee`(id)
---                      );
+CREATE TABLE refund (
+	id INTEGER NOT NULL
+	,return_date DATETIME (6)
+	,surcharge DOUBLE
+	,comments VARCHAR(255)
+	,fk_employee_id INTEGER NOT NULL
+	,fk_reservation_id INTEGER NOT NULL
+	,PRIMARY KEY (id)
+	,FOREIGN KEY (`fk_reservation_id`) REFERENCES `reservation`(id)
+	,FOREIGN KEY (`fk_employee_id`) REFERENCES `employee`(id)
+	);
+	--         create table employee_work_branch
+	--                     (
+	--                     branch_id integer NOT NULL,
+	--                     employee_id integer NOT NULL,
+	--                     PRIMARY KEY (branch_id , employee_id ),
+	--                     FOREIGN KEY (`branch_id`) REFERENCES `branch`(id),
+	--                     FOREIGN KEY (`employee_id`) REFERENCES `employee`(id)
+	--                      );

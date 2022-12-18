@@ -4,17 +4,18 @@ import beams.entity.Employee;
 import beams.model.employee.EmployeeRequest;
 import beams.model.employee.EmployeeResponse;
 import org.mapstruct.Mapper;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapping;
 
-@ComponentScan
-@Mapper(componentModel = "spring")
+import java.util.List;
+
+
+@Mapper
 public interface EmployeeMapper {
 
     Employee map(EmployeeRequest employeeRequest);
-
+    @Mapping(target = "branchId", source = "branch.id")
     EmployeeResponse map(Employee employee);
 
-
+    List<EmployeeResponse> map(List<Employee> employees);
 
 }

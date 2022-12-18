@@ -14,5 +14,7 @@ public class EmployeeResponse {
     private String lastName;
 
     @Enumerated(EnumType.STRING)
-    EmployeeEnum type ;
+    private EmployeeEnum type;
+
+    private Integer branchId;
 }
