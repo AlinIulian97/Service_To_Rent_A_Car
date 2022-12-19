@@ -8,16 +8,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("revenue")
 public class RevenueController {
     private final RevenueService revenueService;
 
-    @PostMapping("/saveRevenue")
-    public RevenueResponse saveRevenue (@RequestBody RevenueRequest revenueRequest){
+    @PostMapping("/save")
+    public RevenueResponse saveRevenue(@RequestBody RevenueRequest revenueRequest) {
         return revenueService.addRevenue(revenueRequest);
     }
 
-    @DeleteMapping("deleteRevenue/{id}")
-    public void deleteRevenue(@PathVariable Integer id){
+    @DeleteMapping("/{id}")
+    public void deleteRevenue(@PathVariable Integer id) {
         revenueService.deleteRevenue(id);
     }
 }

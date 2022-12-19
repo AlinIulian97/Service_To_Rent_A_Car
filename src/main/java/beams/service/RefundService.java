@@ -13,7 +13,10 @@ import beams.repository.ReservationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class RefundService {
 
@@ -68,6 +71,12 @@ public class RefundService {
                 ()-> new BusinessException("Refund not Found")
         );
         refundRepository.delete(refundToDelete);
+    }
+
+    public RefundResponse findById(Integer id){
+        return refundMapper.map(refundRepository.findById(id).orElseThrow(
+                ()-> new BusinessException("Refund not found")
+        ));
     }
 
 }

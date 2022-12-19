@@ -10,16 +10,23 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("customer")
 public class CustomerController {
 
     private final CustomerService customerService;
-    @PostMapping("/saveCustomer")
-    public CustomerResponse saveCustomer(@RequestBody @Valid CustomerRequest customerRequest){
+
+    @PostMapping("/save")
+    public CustomerResponse saveCustomer(@RequestBody @Valid CustomerRequest customerRequest) {
         return customerService.saveCustomer(customerRequest);
     }
 
-@DeleteMapping("deleteCustomer/{id}")
-    public void deleteCustomer(@PathVariable  Integer id){
+    @DeleteMapping("/{id}")
+    public void deleteCustomer(@PathVariable Integer id) {
         customerService.deleteCustomer(id);
-}
+    }
+
+    @GetMapping("/{id}")
+    public CustomerResponse findById(@PathVariable Integer id) {
+        return customerService.findById(id);
+    }
 }

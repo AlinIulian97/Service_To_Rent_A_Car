@@ -8,17 +8,23 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("reservation")
 public class ReservationController {
 
     private final ReservationService reservationService;
 
-    @PostMapping("/saveReservation")
+    @PostMapping("/save")
     public ReservationResponse saveReservation(@RequestBody ReservationRequest reservationRequest) {
         return reservationService.saveReservation(reservationRequest);
     }
 
-    @DeleteMapping("deleteReservation/{id}")
-    public void deleteReservation(@PathVariable Integer id){
+    @DeleteMapping("/{id}")
+    public void deleteReservation(@PathVariable Integer id) {
         reservationService.deleteReservation(id);
+    }
+
+    @GetMapping("/{id}")
+    public ReservationResponse findById(@PathVariable Integer id) {
+        return reservationService.findById(id);
     }
 }

@@ -15,12 +15,12 @@ import java.util.List;
 public class CarController {
     private final CarService carService;
 
-    @PostMapping("/add")
+    @PostMapping("/save")
     public CarResponse addCar(@RequestBody @Valid CarRequest carRequest) {
         return carService.saveCar(carRequest);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteCar(@PathVariable Integer id) {
         carService.delete(id);
     }
@@ -35,9 +35,9 @@ public class CarController {
         carService.printCarList(list);
     }
 
-@GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public CarResponse findById(@PathVariable Integer id) {
-       return carService.findById(id);
+        return carService.findById(id);
     }
 }
 

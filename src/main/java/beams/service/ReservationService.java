@@ -72,4 +72,10 @@ public class ReservationService {
         );
         reservationRepository.delete(reservationToDelete);
     }
+
+    public ReservationResponse findById(Integer id) {
+    return reservationMapper.map(reservationRepository.findById(id).orElseThrow(
+            ()-> new BusinessException("Reservation not found")
+    ));
+    }
 }

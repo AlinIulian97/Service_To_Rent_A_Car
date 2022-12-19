@@ -42,4 +42,10 @@ public class EmployeeService {
     public List<EmployeeResponse> employees(){
         return employeeMapper.map(employeeRepository.findAll());
     }
+
+    public EmployeeResponse findById(Integer id){
+        return employeeMapper.map(employeeRepository.findById(id).orElseThrow(
+                ()-> new BusinessException("Empolyee not found")
+        ));
+    }
 }

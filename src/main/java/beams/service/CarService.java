@@ -10,7 +10,6 @@ import beams.repository.BranchRepository;
 import beams.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

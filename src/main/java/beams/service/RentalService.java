@@ -32,4 +32,10 @@ public class RentalService {
         );
         rentalRepository.delete(rentalToDelete);
     }
+
+    public RentalResponse findById(Integer id) {
+        return rentalMapper.map(rentalRepository.findById(id).orElseThrow(
+                () -> new BusinessException("Rental not found")
+        ));
+    }
 }

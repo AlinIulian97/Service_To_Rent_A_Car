@@ -33,4 +33,10 @@ public class CustomerService {
         customerRepository.delete(customerToDelete);
     }
 
+    public CustomerResponse findById(Integer id){
+        return customerMapper.map(customerRepository.findById(id).orElseThrow(
+                () -> new BusinessException("Customer not found")
+        ));
+    }
+
 }
