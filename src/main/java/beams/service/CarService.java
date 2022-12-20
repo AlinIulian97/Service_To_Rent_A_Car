@@ -6,6 +6,7 @@ import beams.exception.BusinessException;
 import beams.mapper.CarMapper;
 import beams.model.car.CarRequest;
 import beams.model.car.CarResponse;
+import beams.model.car.CarResponseUpdate;
 import beams.repository.BranchRepository;
 import beams.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
@@ -51,15 +52,15 @@ public class CarService {
     }
 
     public void printCarList(List<CarResponse> listToPrint) {
-     carMapper.map(carRepository.findAll()).forEach(carResponse -> {
-         log.info(String.valueOf(carResponse));
-     });
+        carMapper.map(carRepository.findAll()).forEach(carResponse -> {
+            log.info(String.valueOf(carResponse));
+        });
     }
 
-    public CarResponse findById(Integer id){
+    public CarResponse findById(Integer id) {
 
-    return  carMapper.map(carRepository.findById(id).orElseThrow(
-            ()-> new BusinessException("No car found")));
+        return carMapper.map(carRepository.findById(id).orElseThrow(
+                () -> new BusinessException("No car found")));
     }
 
     public void checkDuplicate(CarRequest carRequest) {
@@ -70,5 +71,14 @@ public class CarService {
             }
         }
     }
+
+    public void updateById(Integer id, CarResponseUpdate carResponseUpdate) {
+
+        Car carToUpdate = carRepository.findById(id).orElseThrow(
+                () -> new BusinessException("Car not found")
+        );
+        carToUpdate.setMileage(carResponseUpdate.getMileage());
+    }
 }
+
 

@@ -2,6 +2,7 @@ package beams.controller;
 
 import beams.model.car.CarRequest;
 import beams.model.car.CarResponse;
+import beams.model.car.CarResponseUpdate;
 import beams.service.CarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -35,9 +36,14 @@ public class CarController {
         carService.printCarList(list);
     }
 
-@GetMapping("/get/{id}")
+    @GetMapping("/get/{id}")
     public CarResponse findById(@PathVariable Integer id) {
-       return carService.findById(id);
+        return carService.findById(id);
+    }
+
+    @PatchMapping("/update/{id}")
+    public void updateById(@PathVariable Integer id, @RequestBody CarResponseUpdate carResponseUpdate) {
+        carService.updateById(id, carResponseUpdate);
     }
 }
 
