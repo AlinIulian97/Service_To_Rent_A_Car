@@ -1,12 +1,16 @@
 package beams.entity;
 
+import beams.model.employee.EmployeeResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.mapstruct.Named;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -30,12 +34,12 @@ public class Refund {
     private String comments;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_reservation_id", referencedColumnName = "id")
+    @JoinColumn(name = "fk_reservation_id", referencedColumnName = "id" , unique = true)
     private Reservation reservation;
 
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_employee_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_employee_id" , referencedColumnName = "id")
     private Employee employee;
 
 }

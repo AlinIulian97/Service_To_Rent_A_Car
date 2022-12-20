@@ -6,7 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.lang.model.element.Name;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,7 +19,7 @@ import javax.persistence.*;
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO )
     private Integer id;
 
     @Enumerated(EnumType.STRING)
@@ -28,12 +31,11 @@ public class Employee {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToOne(mappedBy = "employee" ,
-            cascade = CascadeType.ALL)
-    private Refund refund;
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "employee")
+    private final List <Refund> refund = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name ="fk_branch_id", referencedColumnName = "id")
+    @JoinColumn(name = "fk_branch_id", referencedColumnName = "id")
     private Branch branch;
 
 }

@@ -29,4 +29,8 @@ public class EmployeeRequest {
     EmployeeEnum type ;
 
     private Integer branchId;
+
+
+
+
 }

@@ -17,4 +17,6 @@ public class EmployeeResponse {
     private EmployeeEnum type;
 
     private Integer branchId;
+
+
 }

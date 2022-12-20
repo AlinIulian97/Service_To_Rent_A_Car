@@ -41,41 +41,43 @@ public class RefundService {
 
         refundRepository.save(refundToSave);
 
-        RefundResponse refundResponse = new RefundResponse();
-        refundResponse.setId(refundToSave.getId());
-        refundResponse.setComments(refundToSave.getComments());
-        refundResponse.setSurcharge(refundToSave.getSurcharge());
-        refundResponse.setReturnDate(refundToSave.getReturnDate());
+//  Mapperul le creaza automat! don t need to make
 
+//        RefundResponse refundResponse = new RefundResponse();
+//        refundResponse.setId(refundToSave.getId());
+//        refundResponse.setComments(refundToSave.getComments());
+//        refundResponse.setSurcharge(refundToSave.getSurcharge());
+//        refundResponse.setReturnDate(refundToSave.getReturnDate());
+//        refundResponse.setEmployeeId(refundToSave.getEmployee().getId());
+//
+//
+//        ReservationCreateRefundResponse reservationCreateRefundResponse = new ReservationCreateRefundResponse();
+//        reservationCreateRefundResponse.setId(refundToSave.getReservation().getId());
+//        reservationCreateRefundResponse.setAmount(refundToSave.getReservation().getAmount());
+//        reservationCreateRefundResponse.setDateTo((refundToSave.getReservation().getDateTo()));
+//
+//
+//        EmployeeCreateRefundResponse employeeCreateRefundResponse = new EmployeeCreateRefundResponse();
+//        employeeCreateRefundResponse.setId(refundToSave.getEmployee().getId());
+//        employeeCreateRefundResponse.setFirstName(refundToSave.getEmployee().getFirstName());
+//        employeeCreateRefundResponse.setLastName(refundToSave.getEmployee().getLastName());
+//
+//        refundResponse.setEmployee(employeeCreateRefundResponse);
+//        refundResponse.setReservation(reservationCreateRefundResponse);
 
-        ReservationCreateRefundResponse reservationCreateRefundResponse = new ReservationCreateRefundResponse();
-        reservationCreateRefundResponse.setId(refundToSave.getReservation().getId());
-        reservationCreateRefundResponse.setAmount(refundToSave.getReservation().getAmount());
-        reservationCreateRefundResponse.setDateTo((refundToSave.getReservation().getDateTo()));
-
-
-        EmployeeCreateRefundResponse employeeCreateRefundResponse = new EmployeeCreateRefundResponse();
-        employeeCreateRefundResponse.setId(refundToSave.getEmployee().getId());
-        employeeCreateRefundResponse.setFirstName(refundToSave.getEmployee().getFirstName());
-        employeeCreateRefundResponse.setLastName(refundToSave.getEmployee().getLastName());
-
-
-        refundResponse.setEmployee(employeeCreateRefundResponse);
-        refundResponse.setReservation(reservationCreateRefundResponse);
-
-        return refundResponse;
+        return refundMapper.map(refundToSave);
     }
 
-    public void deleteRefund(Integer id ){
+    public void deleteRefund(Integer id) {
         Refund refundToDelete = refundRepository.findById(id).orElseThrow(
-                ()-> new BusinessException("Refund not Found")
+                () -> new BusinessException("Refund not Found")
         );
         refundRepository.delete(refundToDelete);
     }
 
-    public RefundResponse findById(Integer id){
+    public RefundResponse findById(Integer id) {
         return refundMapper.map(refundRepository.findById(id).orElseThrow(
-                ()-> new BusinessException("Refund not found")
+                () -> new BusinessException("Refund not found")
         ));
     }
 

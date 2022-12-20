@@ -28,4 +28,6 @@ public class RefundRequest {
     private Integer reservationId;
 
     private Integer employeeId;
+
+    private Integer refundId;
 }

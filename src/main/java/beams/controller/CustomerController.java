@@ -9,24 +9,18 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("customer")
+@RequiredArgsConstructor
 public class CustomerController {
 
     private final CustomerService customerService;
-
     @PostMapping("/save")
-    public CustomerResponse saveCustomer(@RequestBody @Valid CustomerRequest customerRequest) {
+    public CustomerResponse saveCustomer(@RequestBody @Valid CustomerRequest customerRequest){
         return customerService.saveCustomer(customerRequest);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteCustomer(@PathVariable Integer id) {
+@DeleteMapping("/{id}")
+    public void deleteCustomer(@PathVariable  Integer id){
         customerService.deleteCustomer(id);
-    }
-
-    @GetMapping("/{id}")
-    public CustomerResponse findById(@PathVariable Integer id) {
-        return customerService.findById(id);
-    }
+}
 }

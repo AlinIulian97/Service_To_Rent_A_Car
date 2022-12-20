@@ -13,8 +13,10 @@ import java.util.List;
 public interface EmployeeMapper {
 
     Employee map(EmployeeRequest employeeRequest);
+
     @Mapping(target = "branchId", source = "branch.id")
     EmployeeResponse map(Employee employee);
+
 
     List<EmployeeResponse> map(List<Employee> employees);
 

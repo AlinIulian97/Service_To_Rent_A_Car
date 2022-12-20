@@ -35,9 +35,9 @@ public class CarController {
         carService.printCarList(list);
     }
 
-    @GetMapping("/{id}")
+@GetMapping("/get/{id}")
     public CarResponse findById(@PathVariable Integer id) {
-        return carService.findById(id);
+       return carService.findById(id);
     }
 }
 
