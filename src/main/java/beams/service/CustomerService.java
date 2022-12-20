@@ -5,6 +5,7 @@ import beams.exception.BusinessException;
 import beams.mapper.CustomerMapper;
 import beams.model.customer.CustomerRequest;
 import beams.model.customer.CustomerResponse;
+import beams.model.customer.UpdateCustomerResponse;
 import beams.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -39,4 +40,11 @@ public class CustomerService {
         ));
     }
 
+    public void updateCustomer(UpdateCustomerResponse customerUpdateResponse, Integer id) {
+        Customer customerToUpdate =customerRepository.findById(id).orElseThrow(
+                ()-> new BusinessException("No customer fund")
+        );
+        customerToUpdate.setAddress(customerUpdateResponse.getAddress());
+        customerToUpdate.setEmail(customerUpdateResponse.getEmail());
+    }
 }

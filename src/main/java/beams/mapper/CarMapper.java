@@ -3,6 +3,7 @@ package beams.mapper;
 import beams.entity.Car;
 import beams.model.car.CarRequest;
 import beams.model.car.CarResponse;
+import beams.model.car.CarResponseUpdate;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -19,4 +20,6 @@ public interface CarMapper {
     CarResponse map(Car car);
 
     List<CarResponse> map(List<Car> allCar);
+
+    CarResponseUpdate mapUpdate(Car car);
 }

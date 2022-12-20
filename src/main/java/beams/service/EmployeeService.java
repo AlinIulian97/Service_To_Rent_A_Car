@@ -1,11 +1,11 @@
 package beams.service;
 
-import beams.entity.Branch;
 import beams.entity.Employee;
 import beams.exception.BusinessException;
 import beams.mapper.EmployeeMapper;
 import beams.model.employee.EmployeeRequest;
 import beams.model.employee.EmployeeResponse;
+import beams.model.employee.EmployeeUpdateResponse;
 import beams.repository.BranchRepository;
 import beams.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,28 +24,37 @@ public class EmployeeService {
 
     private final BranchRepository branchRepository;
 
-    public EmployeeResponse saveEmployee(EmployeeRequest employeeRequest){
-        Employee employee=employeeMapper.map(employeeRequest);
+    public EmployeeResponse saveEmployee(EmployeeRequest employeeRequest) {
+        Employee employee = employeeMapper.map(employeeRequest);
         employee.setBranch(branchRepository.findById(employeeRequest.getBranchId()).orElseThrow(
-                ()-> new BusinessException("Branch not found")));
+                () -> new BusinessException("Branch not found")));
         employeeRepository.save(employee);
         return employeeMapper.map(employee);
     }
 
-    public void deleteEmployee(Integer id){
-        Employee employeeToDelete =employeeRepository.findById(id).orElseThrow(
+    public void deleteEmployee(Integer id) {
+        Employee employeeToDelete = employeeRepository.findById(id).orElseThrow(
                 () -> new BusinessException("Employee not found")
         );
         employeeRepository.delete(employeeToDelete);
     }
 
-    public List<EmployeeResponse> employees(){
+    public List<EmployeeResponse> employees() {
         return employeeMapper.map(employeeRepository.findAll());
     }
 
-    public EmployeeResponse findById(Integer id){
+    public EmployeeResponse findById(Integer id) {
         return employeeMapper.map(employeeRepository.findById(id).orElseThrow(
-                ()-> new BusinessException("Empolyee not found")
+                () -> new BusinessException("Empolyee not found")
         ));
+    }
+
+    public void updateEmployee(Integer id, EmployeeUpdateResponse employeeUpdateResponse) {
+        Employee employeeToUpdate = employeeRepository.findById(id).orElseThrow(
+                () -> new BusinessException("Employee not found"));
+        employeeToUpdate.setBranch(branchRepository.findById(employeeUpdateResponse.getBranchId()).orElseThrow(
+                () -> new BusinessException("Branch not found")));
+
+        employeeUpdateResponse.setBranch(employeeToUpdate.getBranch());
     }
 }

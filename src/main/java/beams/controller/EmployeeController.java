@@ -1,7 +1,9 @@
 package beams.controller;
 
+import beams.entity.Employee;
 import beams.model.employee.EmployeeRequest;
 import beams.model.employee.EmployeeResponse;
+import beams.model.employee.EmployeeUpdateResponse;
 import beams.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +29,10 @@ public class EmployeeController {
     @GetMapping("{id}")
     public EmployeeResponse findById(@PathVariable Integer id) {
         return employeeService.findById(id);
+    }
+
+    @PatchMapping("{id}")
+    public void updateEmployee(@PathVariable Integer id, @RequestBody EmployeeUpdateResponse employeeUpdateResponse) {
+        employeeService.updateEmployee(id, employeeUpdateResponse);
     }
 }

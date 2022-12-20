@@ -6,19 +6,15 @@ import beams.mapper.BranchMapper;
 import beams.model.branch.BranchDetailsResponse;
 import beams.model.branch.BranchRequest;
 import beams.model.branch.BranchResponse;
-import beams.model.employee.EmployeeResponse;
+import beams.model.branch.BranchToUpdate;
 import beams.model.rental.RentalResponseForBranch;
 import beams.repository.BranchRepository;
 import beams.repository.EmployeeRepository;
 import beams.repository.RentalRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @Transactional
@@ -64,6 +60,13 @@ public class BranchService {
         return branchMapper.mapDetails(branchRepository.findById(id).orElseThrow(
                 () -> new BusinessException("No branch found")
         ));
+    }
+
+    public void updateBranch(Integer id, BranchToUpdate branchToUpdate) {
+        Branch branch = branchRepository.findById(id).orElseThrow(
+                () -> new BusinessException("No branch found")
+        );
+        branch.setAddressCity(branchToUpdate.getAddressCity());
     }
 }
 
