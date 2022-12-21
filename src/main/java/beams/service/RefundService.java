@@ -6,6 +6,7 @@ import beams.mapper.RefundMapper;
 import beams.model.employee.EmployeeCreateRefundResponse;
 import beams.model.refund.RefundRequest;
 import beams.model.refund.RefundResponse;
+import beams.model.refund.RefundUpdateResponse;
 import beams.model.reservation.ReservationCreateRefundResponse;
 import beams.repository.EmployeeRepository;
 import beams.repository.RefundRepository;
@@ -79,6 +80,17 @@ public class RefundService {
         return refundMapper.map(refundRepository.findById(id).orElseThrow(
                 () -> new BusinessException("Refund not found")
         ));
+    }
+
+    public void updateRefund(Integer id , RefundUpdateResponse refundUpdateResponse){
+        Refund refundToUpdate = refundRepository.findById(id).orElseThrow(
+                ()-> new BusinessException("Refund not found")
+        );
+
+     refundToUpdate.setReturnDate(refundUpdateResponse.getReturnDate());
+     refundToUpdate.setSurcharge(refundUpdateResponse.getSurcharge());
+
+
     }
 
 }

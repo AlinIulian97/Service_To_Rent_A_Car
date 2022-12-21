@@ -2,6 +2,7 @@ package beams.controller;
 
 import beams.model.rental.RentalRequest;
 import beams.model.rental.RentalResponse;
+import beams.model.rental.RentalUpdateResponse;
 import beams.service.RentalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,11 @@ public class RentalController {
     @GetMapping("/{id}")
     public RentalResponse findById(@PathVariable Integer id) {
         return rentalService.findById(id);
+    }
+
+    @PatchMapping("{id}")
+    public void updateRental(@PathVariable Integer id , @RequestBody  RentalUpdateResponse rentalUpdateResponse){
+        rentalService.updateRental(id , rentalUpdateResponse);
     }
 
 }

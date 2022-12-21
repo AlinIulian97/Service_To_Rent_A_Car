@@ -9,6 +9,7 @@ import beams.model.car.CarResponseForReservation;
 import beams.model.customer.CustomerResponseForReservation;
 import beams.model.reservation.ReservationRequest;
 import beams.model.reservation.ReservationResponse;
+import beams.model.reservation.ReservationUpdateResponse;
 import beams.repository.CarRepository;
 import beams.repository.CustomerRepository;
 import beams.repository.ReservationRepository;
@@ -77,5 +78,13 @@ public class ReservationService {
     return reservationMapper.map(reservationRepository.findById(id).orElseThrow(
             ()-> new BusinessException("Reservation not found")
     ));
+    }
+
+    public void updateReservation(Integer id, ReservationUpdateResponse reservationUpdateResponse){
+        Reservation reservationToUpdate =reservationRepository.findById(id).orElseThrow(
+                () -> new BusinessException("Reservation not found")
+        );
+        reservationToUpdate.setDateTo(reservationUpdateResponse.getDateTo());
+        reservationToUpdate.setAmount(reservationUpdateResponse.getAmount());
     }
 }

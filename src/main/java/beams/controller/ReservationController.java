@@ -2,6 +2,7 @@ package beams.controller;
 
 import beams.model.reservation.ReservationRequest;
 import beams.model.reservation.ReservationResponse;
+import beams.model.reservation.ReservationUpdateResponse;
 import beams.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -26,5 +27,10 @@ public class ReservationController {
     @GetMapping("/{id}")
     public ReservationResponse findById(@PathVariable Integer id) {
         return reservationService.findById(id);
+    }
+
+    @PatchMapping({"{id}"})
+    public void updateReservation(@PathVariable Integer id , @RequestBody ReservationUpdateResponse reservationUpdateResponse){
+        reservationService.updateReservation(id, reservationUpdateResponse);
     }
 }

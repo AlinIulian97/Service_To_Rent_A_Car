@@ -6,6 +6,7 @@ import beams.exception.BusinessException;
 import beams.mapper.RentalMapper;
 import beams.model.rental.RentalRequest;
 import beams.model.rental.RentalResponse;
+import beams.model.rental.RentalUpdateResponse;
 import beams.repository.RentalRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,14 @@ public class RentalService {
         return rentalMapper.map(rentalRepository.findById(id).orElseThrow(
                 () -> new BusinessException("Rental not found")
         ));
+    }
+
+    public void updateRental(Integer id, RentalUpdateResponse rentalUpdateResponse) {
+        Rental rentalToUpdate = rentalRepository.findById(id).orElseThrow(
+                ()-> new BusinessException("Rental no fund")
+        );
+        rentalToUpdate.setOwner(rentalUpdateResponse.getOwner());
+        rentalToUpdate.setContactAddress(rentalUpdateResponse.getContactAddress());
+
     }
 }

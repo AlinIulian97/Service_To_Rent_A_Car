@@ -1,4 +1,4 @@
-package beams.model.refund;
+package beams.model.rental;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,13 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RefundUpdateResponse {
+public class RentalUpdateResponse {
 
-    private Date returnDate;
-    private double surcharge;
+    private String owner;
+
+    private String contactAddress;
 
 }
