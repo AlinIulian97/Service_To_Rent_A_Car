@@ -2,13 +2,13 @@ package beams.model.reservation;
 
 import lombok.Data;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Data
 public class ReservationCreateRefundResponse {
 
     private Integer id;
-    private double amount;
-    private Date dateTo;
+    private Double amount;
+    private LocalDate dateTo;
 
 }

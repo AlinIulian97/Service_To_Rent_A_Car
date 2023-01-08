@@ -5,14 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class RefundUpdateResponse {
 
-    private Date returnDate;
-    private double surcharge;
+    private LocalDate returnDate;
+    private Double surcharge;
 
 }

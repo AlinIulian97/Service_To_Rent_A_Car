@@ -1,15 +1,12 @@
 package beams.model.refund;
 
-import beams.entity.Employee;
-import beams.entity.Reservation;
-import beams.model.employee.EmployeeCreateRefundResponse;
-import beams.model.reservation.ReservationCreateRefundResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -19,15 +16,12 @@ public class RefundRequest {
 
     private Integer id;
 
-    private Date returnDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDate returnDate;
 
-    private double surcharge;
-
+    private Double surcharge;
     private String comments;
-
     private Integer reservationId;
-
     private Integer employeeId;
-
     private Integer refundId;
 }

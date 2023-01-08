@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -13,7 +13,7 @@ import java.sql.Date;
 @Builder
 public class ReservationUpdateResponse {
 
-    private Date dateTo;
-    private double amount;
+    private LocalDate dateTo;
+    private Double amount;
 
 }

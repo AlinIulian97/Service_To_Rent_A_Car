@@ -4,6 +4,7 @@ import beams.entity.enums.CarStatusEnum;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,8 +24,9 @@ public class Car {
     @Enumerated(EnumType.STRING)
     private CarStatusEnum status;
 
-    @Column(name = "amount")
-    private double amount;
+    @Column(name = "amount", nullable = false)
+    @NotNull
+    private Double amount;
 
     @Column(name = "body_type")
     private String bodyType;
@@ -46,7 +48,7 @@ public class Car {
     private Set<Reservation> reservationList = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name ="fk_branch_id", referencedColumnName = "id")
+    @JoinColumn(name = "fk_branch_id", referencedColumnName = "id")
     private Branch branch;
 
 }

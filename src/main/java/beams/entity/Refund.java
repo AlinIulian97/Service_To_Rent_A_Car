@@ -1,16 +1,13 @@
 package beams.entity;
 
-import beams.model.employee.EmployeeResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.mapstruct.Named;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
 
 
 @Getter
@@ -25,10 +22,10 @@ public class Refund {
     private Integer id;
 
     @Column(name = "return_date")
-    private Date returnDate;
+    private LocalDate returnDate;
 
     @Column
-    private double surcharge;
+    private Double surcharge;
 
     @Column
     private String comments;

@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -22,16 +23,16 @@ public class Reservation {
     private Integer id;
 
     @Column(name = "date_of_reservation")
-    private java.sql.Date dateOfReservation;
+    private LocalDate dateOfReservation;
 
     @Column(name = "date_from")
-    private java.sql.Date dateFrom;
+    private  LocalDate dateFrom;
 
     @Column(name = "date_to")
-    private Date dateTo;
+    private LocalDate dateTo;
 
     @Column
-    private double amount;
+    private Double amount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "car_id", referencedColumnName = "id")
@@ -42,8 +43,7 @@ public class Reservation {
     private Customer customer;
 
 
-    @OneToOne(mappedBy = "reservation",
-            cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL )
     private Refund refund;
 
 

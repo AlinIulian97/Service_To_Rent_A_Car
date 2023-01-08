@@ -21,7 +21,7 @@ public class CarRequest {
     @Enumerated(EnumType.STRING)
     private CarStatusEnum status;
 
-    private double amount;
+    private Double amount;
 
     @NotBlank(message = "Invalid body type")
     private String bodyType;

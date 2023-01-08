@@ -8,7 +8,7 @@ public class CarResponse {
 
     private Integer id;
     private CarStatusEnum status;
-    private double amount;
+    private Double amount;
     private String bodyType;
     private String carName;
     private String colour;

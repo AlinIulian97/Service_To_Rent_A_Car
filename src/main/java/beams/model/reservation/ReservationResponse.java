@@ -1,27 +1,28 @@
 package beams.model.reservation;
 
-import beams.entity.Car;
-import beams.entity.Customer;
 import beams.model.car.CarResponseForReservation;
 import beams.model.customer.CustomerResponseForReservation;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 public class ReservationResponse {
 
     private Integer id;
 
-    private Date dateOfReservation;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDate dateOfReservation;
 
-    private Date dateFrom;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDate dateFrom;
 
-    private Date dateTo;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDate dateTo;
 
-    private double amount;
-
+    private Double amount;
     private CarResponseForReservation car;
-
     private CustomerResponseForReservation customer;
 }
