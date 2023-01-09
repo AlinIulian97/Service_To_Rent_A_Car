@@ -1,6 +1,5 @@
 CREATE TABLE rental (
-	id INTEGER NOT NULL
-	,type VARCHAR(255)
+	id INTEGER NOT NULL AUTO_INCREMENT
 	,name_rental VARCHAR(255)
 	,internet_domain VARCHAR(255)
 	,contact_address VARCHAR(255)
@@ -10,7 +9,7 @@ CREATE TABLE rental (
 	);
 
 CREATE TABLE branch (
-	id INTEGER NOT NULL
+	id INTEGER NOT NULL AUTO_INCREMENT
 	,address_city VARCHAR(255)
 	,fk_rental_id INTEGER NOT NULL
 	,PRIMARY KEY (id)
@@ -18,7 +17,7 @@ CREATE TABLE branch (
 	);
 
 CREATE TABLE employee (
-    id INTEGER NOT NULL
+    id INTEGER NOT NULL AUTO_INCREMENT
     ,type VARCHAR(255)
     ,first_name VARCHAR(255)
     ,last_name VARCHAR(255)
@@ -28,7 +27,7 @@ CREATE TABLE employee (
     );
 
 CREATE TABLE car (
-	id INTEGER NOT NULL
+	id INTEGER NOT NULL AUTO_INCREMENT
 	,STATUS VARCHAR(255)
 	,amount DOUBLE PRECISION
 	,body_type VARCHAR(255)
@@ -42,7 +41,7 @@ CREATE TABLE car (
 	);
 
 CREATE TABLE customer (
-	id INTEGER NOT NULL
+	id INTEGER NOT NULL AUTO_INCREMENT
 	,first_name VARCHAR(255)
 	,name VARCHAR(255)
 	,email VARCHAR(255)
@@ -51,7 +50,7 @@ CREATE TABLE customer (
 	);
 
 CREATE TABLE reservation (
-	id INTEGER NOT NULL
+	id INTEGER NOT NULL AUTO_INCREMENT
 	,date_of_reservation timestamp
 	,date_from timestamp
 	,date_to timestamp
@@ -64,12 +63,13 @@ CREATE TABLE reservation (
 	);
 
 CREATE TABLE revenue (
-	id INTEGER NOT NULL
+	id INTEGER NOT NULL AUTO_INCREMENT
 	,car_rental_amount DOUBLE PRECISION
+	, PRIMARY KEY(id)
 	);
 
 CREATE TABLE refund (
-	id INTEGER NOT NULL
+	id INTEGER NOT NULL AUTO_INCREMENT
 	,return_date timestamp
 	,surcharge DOUBLE
 	,comments VARCHAR(255)

@@ -17,7 +17,7 @@ import java.util.List;
 public class Branch {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "address_city")

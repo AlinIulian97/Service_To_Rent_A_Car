@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Revenue {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "car_rental_amount")

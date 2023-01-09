@@ -15,6 +15,7 @@ import java.sql.Date;
 public class Loan {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "date_of_rental")
