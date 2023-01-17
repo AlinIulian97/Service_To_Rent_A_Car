@@ -8,6 +8,37 @@
   <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<h1>Rent</h1>
+<form action="#" th:action="@{/rentPage/createRent}" method="post">
+  <table class="table table-dark">
+    <tr>
+      <td> Internet Domain :</td>
+      <td><input type="text" name="internetDomain" placeholder="Internet Domain" required></td>
+    </tr>
+    <tr>
+      <td> Name Rental :</td>
+      <td><input type="text" name="nameRental" placeholder="Name Rental"required></td>
+    </tr>
+    <tr>
+      <td> Contact Address :</td>
+      <td><input type="text" name="contactAddress" placeholder="Contact Address" required></td>
+    </tr>
+    <tr>
+      <td> Owner :</td>
+      <td><input type="text" name="owner" placeholder="Owner" required></td>
+    </tr>
+    <tr>
+      <td> Logo Type :</td>
+      <td><input type="text" name="logoType" placeholder="Logo Type" required></td>
+    </tr>
+  </table>
+  <button type="submit" value="Create" class="btn btn-success">Create</button>
+</form>
+
+<form th:action="@{/rentPage/allRentalPage}">
+  <div>
+    <button type="submit" class="btn btn-success">View all rental</button>
+  </div>
+</form>
+
 </body>
 </html>

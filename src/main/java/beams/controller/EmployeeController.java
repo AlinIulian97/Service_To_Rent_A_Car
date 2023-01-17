@@ -8,6 +8,8 @@ import beams.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("employee")
 @RequiredArgsConstructor
@@ -34,5 +36,10 @@ public class EmployeeController {
     @PatchMapping("{id}")
     public void updateEmployee(@PathVariable Integer id, @RequestBody EmployeeUpdateResponse employeeUpdateResponse) {
         employeeService.updateEmployee(id, employeeUpdateResponse);
+    }
+
+    @GetMapping("/list")
+    public List<EmployeeResponse> getAllEmployee(){
+      return employeeService.employees();
     }
 }

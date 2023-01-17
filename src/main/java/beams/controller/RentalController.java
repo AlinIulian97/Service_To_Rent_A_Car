@@ -7,6 +7,8 @@ import beams.service.RentalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("rental")
@@ -32,6 +34,11 @@ public class RentalController {
     @PatchMapping("{id}")
     public void updateRental(@PathVariable Integer id , @RequestBody  RentalUpdateResponse rentalUpdateResponse){
         rentalService.updateRental(id , rentalUpdateResponse);
+    }
+
+    @GetMapping("/list")
+    public List <RentalResponse> findAll() {
+        return rentalService.allRental();
     }
 
 }

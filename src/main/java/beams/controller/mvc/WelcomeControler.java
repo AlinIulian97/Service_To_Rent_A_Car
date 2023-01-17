@@ -9,4 +9,9 @@ public class WelcomeControler {
     public String gotWelcomePage(){
         return "StartPage";
     }
+
+    @GetMapping("/menu")
+    public String gotMenu(){
+        return "MenuPage";
+    }
 }

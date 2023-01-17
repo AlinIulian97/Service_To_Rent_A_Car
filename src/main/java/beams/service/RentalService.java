@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -22,14 +23,14 @@ public class RentalService {
 
     private final RentalMapper rentalMapper;
 
-    public RentalResponse addRental(RentalRequest rentalRequest){
-        Rental rental =rentalMapper.map(rentalRequest);
+    public RentalResponse addRental(RentalRequest rentalRequest) {
+        Rental rental = rentalMapper.map(rentalRequest);
         return rentalMapper.map(rentalRepository.save(rental));
     }
 
-    public void deleteRental(Integer id){
-        Rental rentalToDelete =rentalRepository.findById(id).orElseThrow(
-                ()-> new BusinessException("Rental not found")
+    public void deleteRental(Integer id) {
+        Rental rentalToDelete = rentalRepository.findById(id).orElseThrow(
+                () -> new BusinessException("Rental not found")
         );
         rentalRepository.delete(rentalToDelete);
     }
@@ -42,10 +43,14 @@ public class RentalService {
 
     public void updateRental(Integer id, RentalUpdateResponse rentalUpdateResponse) {
         Rental rentalToUpdate = rentalRepository.findById(id).orElseThrow(
-                ()-> new BusinessException("Rental no fund")
+                () -> new BusinessException("Rental no fund")
         );
         rentalToUpdate.setOwner(rentalUpdateResponse.getOwner());
         rentalToUpdate.setContactAddress(rentalUpdateResponse.getContactAddress());
 
+    }
+
+    public List<RentalResponse> allRental() {
+        return rentalMapper.map(rentalRepository.findAll());
     }
 }
