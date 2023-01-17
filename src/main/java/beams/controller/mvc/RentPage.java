@@ -29,14 +29,14 @@ public class RentPage {
     public String createRent(@ModelAttribute(value = "createRent")
                                  RentalRequest request,
                              Model model) {
-        RentalRequest manicuristRequest = RentalRequest.builder()
+        RentalRequest rentalRequest = RentalRequest.builder()
                 .internetDomain(request.getInternetDomain())
                 .nameRental(request.getNameRental())
                 .contactAddress(request.getContactAddress())
                 .owner(request.getOwner())
                 .logoType(request.getLogoType())
                 .build();
-        rentalService.addRental(manicuristRequest);
+        rentalService.addRental(rentalRequest);
 
         model.addAttribute("rentals", rentalService.allRental());
         return "allRentalPage";
