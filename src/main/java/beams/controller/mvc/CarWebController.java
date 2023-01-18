@@ -16,13 +16,13 @@ public class CarWebController {
 
     @GetMapping("/car")
     public String goToCarPage() {
-        return "CarPage";
+        return "carPage";
     }
 
-    @GetMapping
-    public String getAllCars(Model model){
-        model.addAttribute("cars" , carService.getAllCars());
-        return "AllCarsPage";
+    @GetMapping("/viewCars")
+    public String getAllCars(Model model) {
+        model.addAttribute("cars", carService.getAllCars());
+        return "allCarsPage";
     }
 
     @PostMapping("/createCar")
@@ -39,8 +39,8 @@ public class CarWebController {
                 .colour(request.getColour())
                 .status(request.getStatus())
                 .build();
-
+        carService.saveCar(carRequest);
         model.addAttribute("cars", carService.getAllCars());
-        return "AllCarsPage";
+        return "allCarsPage";
     }
 }

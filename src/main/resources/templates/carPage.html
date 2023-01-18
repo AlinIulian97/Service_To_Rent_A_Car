@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title> Registration </title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<form action="#" th:action="@{/createCar}" method="post">
+  <table class="table table-dark">
+    <tr>
+      <td> Car Name :</td>
+      <td><input type="text" name="carName" placeholder="Car Name" required></td>
+    </tr>
+    <tr>
+      <td> Model :</td>
+      <td><input type="text" name="model" placeholder="Model"required></td>
+    </tr>
+    <tr>
+      <td> Body Type :</td>
+      <td><input type="text" name="bodyType" placeholder="Body Type" required></td>
+    </tr>
+    <tr>
+      <td> Branch Id :</td>
+      <td><input type="text" name="branchId" placeholder="Branch Id" required></td>
+    </tr>
+    <tr>
+      <td> Amount:</td>
+      <td><input type="text" name="amount" placeholder="Amount" required></td>
+    </tr>
+    <tr>
+      <td> Mileage:</td>
+      <td><input type="text" name="mileage" placeholder="Mileage" required></td>
+    </tr>
+    <tr>
+      <td> Colour:</td>
+      <td><input type="text" name="colour" placeholder="colour" required></td>
+    </tr>
+    <tr>
+      <td> Status:</td>
+      <td><input type="text" name="status" placeholder="Status" required></td>
+    </tr>
+  </table>
+  <button type="submit" value="Create" class="btn btn-success">Create</button>
+</form>
+
+<form th:action="@{/viewCars}">
+  <div>
+    <button type="submit" class="btn btn-success">View all cars</button>
+  </div>
+</form>
+
+<form th:action="@{/menu}">
+  <div>
+    <button type="submit" class="btn btn-success">Back</button>
+  </div>
+</form>
+</body>
+</html>

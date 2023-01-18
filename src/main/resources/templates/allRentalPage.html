@@ -15,63 +15,63 @@
     </form>
 </div>
 
-<div style="padding: 5px">
+<div style="padding: 0px">
     <table >
         <thead>
         <tr>
-            <th>Internet Domain</th>
-            <th>Name Rental</th>
-            <th>Contact Address</th>
-            <th>Owner</th>
-            <th>Logo Type</th>
-            <th>Update</th>
-            <th>Delete</th>
+            <th style="padding-left: 20px">Internet Domain</th>
+            <th style="padding-left: 20px">Name Rental</th>
+            <th style="padding-left: 20px">Contact Address</th>
+            <th style="padding-left: 20px">Owner </th>
+            <th style="padding-left: 20px">Logo Type</th>
+            <th style="padding-left: 20px">Update</th>
+            <th style="padding-left: 20px">Delete</th>
         </tr>
         </thead>
         <tbody style="font-weight: bold">
         <tr th:each="rentals: ${rentals}">
             <td>
                 <div>
-                    <span th:text="${rentals.getInternetDomain()}" >Name</span>
+                    <span th:text="${rentals.getInternetDomain()}"  style="padding-left: 20px">Name</span>
                 </div>
             </td>
             <td>
                 <div>
-                    <span th:text="${rentals.getNameRental()}">Name Rental</span>
+                    <span th:text="${rentals.getNameRental()}" style="padding-left: 20px">Name Rental</span>
                 </div>
             </td>
 
             <td>
                 <div>
-                    <span th:text="${rentals.getContactAddress()}">Contact Address</span>
+                    <span th:text="${rentals.getContactAddress()}" style="padding-left: 20px">Contact Address</span>
                 </div>
             </td>
 
             <td>
                 <div>
-                    <span th:text="${rentals.getOwner()}">Owner</span>
+                    <span th:text="${rentals.getOwner()}" style="padding-left: 20px">Owner</span>
                 </div>
             </td>
 
             <td>
                 <div>
-                    <span th:text="${rentals.getLogoType()}">Logo Type</span>
+                    <span th:text="${rentals.getLogoType()}" style="padding-left: 20px">Logo Type</span>
                 </div>
             </td>
 
-<!--            <td>-->
-<!--                <form th:action="@{/manicurist/goToUpdateManicuristPage}">-->
-<!--                    <input type="hidden" name="id" th:value="${manicurist.id}">-->
-<!--                    <button type="submit" style="background-color: transparent" class="btn btn-primary btn-sm"> Update-->
-<!--                    </button>-->
-<!--                </form>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <form th:action="@{/manicurist/delete}" method="post">-->
-<!--                    <input type="hidden" name="id" th:value="${manicurist.id}">-->
-<!--                    <button type="submit" style="background-color: transparent" class="btn btn-danger"> Delete</button>-->
-<!--                </form>-->
-<!--            </td>-->
+            <td>
+                <form th:action="@{/manicurist/goToUpdateManicuristPage}">
+                    <input type="hidden" name="id" th:value="${rentals.id}">
+                    <button type="submit" style="background-color: green" class="btn btn-primary btn-sm"> Update
+                    </button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/deleteRent}" method="post">
+                    <input type="hidden" name="id" th:value="${rentals.id}">
+                    <button type="submit" style="background-color: red" class="btn btn-danger"> Delete</button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>

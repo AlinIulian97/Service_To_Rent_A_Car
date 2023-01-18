@@ -34,4 +34,9 @@ public class BranchController {
     public void updateBranch(@PathVariable Integer id , @RequestBody BranchToUpdate branchToUpdate){
         branchService.updateBranch(id ,branchToUpdate);
     }
+
+    @DeleteMapping("{id}")
+    public void deleteBranch(@PathVariable Integer id){
+        branchService.deleteBranch(id);
+    }
 }

@@ -36,7 +36,7 @@ public class Rental {
     @Column(name = "logo_type")
     private String logoType;
 
-    @OneToMany(mappedBy = "rental")
+    @OneToMany(mappedBy = "rental" , cascade = CascadeType.ALL)
     final private List<Branch> branches = new ArrayList<>();
 
 

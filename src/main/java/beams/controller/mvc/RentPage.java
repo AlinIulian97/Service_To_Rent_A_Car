@@ -1,10 +1,12 @@
 package beams.controller.mvc;
 
 import beams.model.rental.RentalRequest;
+import beams.service.BranchService;
 import beams.service.RentalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,9 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 public class RentPage {
     private final RentalService rentalService;
+    private final BranchService branchService;
 
     @GetMapping("/rentPage")
-    public String rentPage(){
+    public String rentPage() {
         return "rentPage";
     }
 
@@ -27,7 +30,7 @@ public class RentPage {
 
     @PostMapping("/rentPage/createRent")
     public String createRent(@ModelAttribute(value = "createRent")
-                                 RentalRequest request,
+                             RentalRequest request,
                              Model model) {
         RentalRequest rentalRequest = RentalRequest.builder()
                 .internetDomain(request.getInternetDomain())
@@ -38,6 +41,16 @@ public class RentPage {
                 .build();
         rentalService.addRental(rentalRequest);
 
+        model.addAttribute("rentals", rentalService.allRental());
+        return "allRentalPage";
+    }
+
+    @PostMapping("/deleteRent")
+    public String deleteRent(@ModelAttribute("deleteRequest")
+                             RentalRequest rentalRequest,
+                             Model model) {
+
+        rentalService.deleteRental(rentalRequest.getId());
         model.addAttribute("rentals", rentalService.allRental());
         return "allRentalPage";
     }

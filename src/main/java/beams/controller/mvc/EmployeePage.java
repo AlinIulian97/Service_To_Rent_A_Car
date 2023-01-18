@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class EmployeePage {
 private final EmployeeService employeeService;
 
-    @GetMapping("/EmployeePage")
+    @GetMapping("/employeePage")
     public String goToEmployeePage(){
-        return "EmployeePage";
+        return "employeePage";
     }
 
     @PostMapping("/createEmployee")
@@ -32,13 +32,13 @@ private final EmployeeService employeeService;
         employeeService.saveEmployee(employeeRequest);
 
         model.addAttribute("employees" , employeeService.employees());
-        return "AllEmployeePage";
+        return "allEmployeePage";
     }
 
-    @GetMapping("/AllEmployees")
+    @GetMapping("/allEmployees")
     public String getAllEmployee(Model model){
         model.addAttribute("employees" , employeeService.employees());
-    return "AllEmployeePage";
+    return "allEmployeePage";
     }
 
 }

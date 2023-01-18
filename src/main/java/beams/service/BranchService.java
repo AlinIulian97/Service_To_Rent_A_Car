@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -67,6 +68,12 @@ public class BranchService {
                 () -> new BusinessException("No branch found")
         );
         branch.setAddressCity(branchToUpdate.getAddressCity());
+    }
+
+    public void deleteBranch(Integer id ) {
+        Branch branch = branchRepository.findById(id).orElseThrow(
+                ()-> new BusinessException("Not found"));
+       branchRepository.delete(branch);
     }
 }
 

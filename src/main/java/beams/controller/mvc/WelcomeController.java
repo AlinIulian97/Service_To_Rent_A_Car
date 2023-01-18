@@ -4,14 +4,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class WelcomeControler {
+public class WelcomeController {
     @GetMapping("/start")
     public String gotWelcomePage(){
-        return "StartPage";
+        return "startPage";
     }
 
     @GetMapping("/menu")
     public String gotMenu(){
-        return "MenuPage";
+        return "menuPage";
     }
 }
