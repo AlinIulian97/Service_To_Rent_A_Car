@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
-public class EmployeePage {
+public class EmployeeWebController {
 private final EmployeeService employeeService;
 
     @GetMapping("/employeePage")

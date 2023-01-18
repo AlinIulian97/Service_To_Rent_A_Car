@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @RestController
@@ -29,6 +30,11 @@ public class CustomerController {
     @PatchMapping("{id}")
     public void updateCustomer(@PathVariable Integer id, @RequestBody UpdateCustomerResponse customerUpdateResponse) {
         customerService.updateCustomer(customerUpdateResponse, id);
+    }
+
+    @GetMapping("/list")
+    public List<CustomerResponse> customers(){
+        return customerService.customers();
     }
 }
 

@@ -8,6 +8,8 @@ import beams.model.customer.CustomerResponse;
 import org.mapstruct.Mapper;
 import org.springframework.context.annotation.ComponentScan;
 
+import java.util.List;
+
 @ComponentScan
 @Mapper(componentModel = "spring")
 public interface CustomerMapper {
@@ -15,6 +17,8 @@ public interface CustomerMapper {
     Customer map(CustomerRequest customerRequest);
 
     CustomerResponse map(Customer customer);
+
+    List<CustomerResponse> map(List<Customer> customer);
 
 
 }

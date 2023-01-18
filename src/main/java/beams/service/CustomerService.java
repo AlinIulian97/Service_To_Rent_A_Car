@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -46,5 +47,9 @@ public class CustomerService {
         );
         customerToUpdate.setAddress(customerUpdateResponse.getAddress());
         customerToUpdate.setEmail(customerUpdateResponse.getEmail());
+    }
+
+    public List<CustomerResponse> customers(){
+        return customerMapper.map(customerRepository.findAll());
     }
 }
