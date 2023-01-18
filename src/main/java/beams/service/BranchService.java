@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,17 +39,7 @@ public class BranchService {
         ));
 
         branchRepository.save(branchToSave);
-
-        BranchResponse branchResponse = new BranchResponse();
-        branchResponse.setId(branchToSave.getId());
-        branchResponse.setAddressCity(branchToSave.getAddressCity());
-
-        RentalResponseForBranch rentalResponseForBranch = new RentalResponseForBranch();
-        rentalResponseForBranch.setId(branchToSave.getRental().getId());
-
-        branchResponse.setRentalResponseForBranch(rentalResponseForBranch);
-
-        return branchResponse;
+        return branchMapper.map(branchToSave);
     }
 
     public BranchResponse findById(Integer id) {
@@ -70,10 +61,14 @@ public class BranchService {
         branch.setAddressCity(branchToUpdate.getAddressCity());
     }
 
-    public void deleteBranch(Integer id ) {
+    public void deleteBranch(Integer id) {
         Branch branch = branchRepository.findById(id).orElseThrow(
-                ()-> new BusinessException("Not found"));
-       branchRepository.delete(branch);
+                () -> new BusinessException("Not found"));
+        branchRepository.delete(branch);
+    }
+
+    public List<BranchResponse> branches() {
+        return branchMapper.map(branchRepository.findAll());
     }
 }
 

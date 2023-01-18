@@ -8,6 +8,8 @@ import beams.service.BranchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("branch")
 @RequiredArgsConstructor
@@ -39,4 +41,10 @@ public class BranchController {
     public void deleteBranch(@PathVariable Integer id){
         branchService.deleteBranch(id);
     }
+
+    @GetMapping("/list")
+    public List<BranchResponse> branches(){
+        return branchService.branches();
+    }
+
 }

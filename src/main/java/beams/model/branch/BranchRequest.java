@@ -1,13 +1,11 @@
 package beams.model.branch;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import beams.model.rental.RentalResponseForBranch;
+import lombok.*;
 
 @Data
-@RequiredArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class BranchRequest {
 
@@ -16,5 +14,7 @@ public class BranchRequest {
     private String addressCity;
 
     private Integer rentalId;
+
+    private RentalResponseForBranch rentalResponseForBranch;
 
 }

@@ -6,6 +6,8 @@ import beams.model.branch.BranchRequest;
 import beams.model.branch.BranchResponse;
 import org.mapstruct.Mapper;
 
+import java.util.List;
+
 
 @Mapper(uses = {EmployeeMapper.class})
 public interface BranchMapper {
@@ -16,7 +18,7 @@ public interface BranchMapper {
 
     BranchDetailsResponse mapDetails(Branch branch);
 
-
+    List<BranchResponse> map(List<Branch> branches);
 
 
 }

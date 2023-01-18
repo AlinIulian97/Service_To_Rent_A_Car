@@ -42,8 +42,3 @@ public class Branch {
 }
 
 
-//    @JoinTable(name = "employee_work_branch",
-//            joinColumns =
-//                    {@JoinColumn(name = "branch_id", referencedColumnName = "id")},
-//            inverseJoinColumns =
-//                    {@JoinColumn(name = "employee_id", referencedColumnName = "id")})

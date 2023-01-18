@@ -11,4 +11,7 @@ public class BranchResponse {
     private String addressCity;
 
     private RentalResponseForBranch rentalResponseForBranch;
+
+    private Integer rentalId;
+
 }
