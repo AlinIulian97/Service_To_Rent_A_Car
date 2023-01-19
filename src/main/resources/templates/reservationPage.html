@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Registration </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<form action="#" th:action="@{/createReservation}" method="post">
+    <table class="table table-dark">
+        <tr>
+            <td> Date of reservation :</td>
+            <td><input type="datetime-local" name="dateOfReservation" placeholder="Date of reservation" required></td>
+        </tr>
+        <tr>
+            <td> Car :</td>
+            <td><input type="text" name="carId" placeholder="Car" required></td>
+        </tr>
+        <tr>
+            <td> Amount :</td>
+            <td><input type="text" name="amount" placeholder="Amount" required></td>
+        </tr>
+        <tr>
+            <td> Customer :</td>
+            <td><input type="text" name="customerId" placeholder="Customer" required></td>
+        </tr>
+        <tr>
+            <td> Date From :</td>
+            <td><input type="datetime-local" name="dateFrom" placeholder="Date From" required></td>
+        </tr>
+        <tr>
+            <td> Date to:</td>
+            <td><input type="datetime-local" name="dateTo" placeholder="Date To" required></td>
+        </tr>
+    </table>
+    <button type="submit" value="Create" class="btn btn-success">Create</button>
+</form>
+
+<form th:action="@{/listReservation}">
+    <div>
+        <button type="submit" class="btn btn-success">View all reservation</button>
+    </div>
+</form>
+
+<form th:action="@{/menu}">
+    <div>
+        <button type="submit" class="btn btn-success">Back</button>
+    </div>
+</form>
+</body>
+</html>

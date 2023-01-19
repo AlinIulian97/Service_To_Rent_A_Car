@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 @Service
@@ -43,28 +44,7 @@ public class ReservationService {
 
         reservationRepository.save(reservationToSave);
 
-        ReservationResponse reservationForResponse = new ReservationResponse();
-
-        reservationForResponse.setId(reservationToSave.getId());
-        reservationForResponse.setDateFrom(reservationToSave.getDateFrom());
-        reservationForResponse.setDateOfReservation(reservationToSave.getDateOfReservation());
-        reservationForResponse.setDateTo(reservationToSave.getDateTo());
-        reservationForResponse.setAmount(reservationToSave.getAmount());
-
-        CarResponseForReservation carResponse = new CarResponseForReservation();
-        carResponse.setId(reservationToSave.getCar().getId());
-        carResponse.setCarName(reservationToSave.getCar().getCarName());
-        carResponse.setStatus(reservationToSave.getCar().getStatus());
-
-        CustomerResponseForReservation customerResponse = new CustomerResponseForReservation();
-        customerResponse.setId(reservationToSave.getCustomer().getId());
-        customerResponse.setName((reservationToSave.getCustomer().getName()));
-        customerResponse.setFirstName(reservationToSave.getCustomer().getFirstName());
-
-        reservationForResponse.setCar(carResponse);
-        reservationForResponse.setCustomer(customerResponse);
-
-        return reservationForResponse;
+        return reservationMapper.map(reservationToSave);
     }
 
     public void deleteReservation(Integer id) {
@@ -75,16 +55,20 @@ public class ReservationService {
     }
 
     public ReservationResponse findById(Integer id) {
-    return reservationMapper.map(reservationRepository.findById(id).orElseThrow(
-            ()-> new BusinessException("Reservation not found")
-    ));
+        return reservationMapper.map(reservationRepository.findById(id).orElseThrow(
+                () -> new BusinessException("Reservation not found")
+        ));
     }
 
-    public void updateReservation(Integer id, ReservationUpdateResponse reservationUpdateResponse){
-        Reservation reservationToUpdate =reservationRepository.findById(id).orElseThrow(
+    public void updateReservation(Integer id, ReservationUpdateResponse reservationUpdateResponse) {
+        Reservation reservationToUpdate = reservationRepository.findById(id).orElseThrow(
                 () -> new BusinessException("Reservation not found")
         );
         reservationToUpdate.setDateTo(reservationUpdateResponse.getDateTo());
         reservationToUpdate.setAmount(reservationUpdateResponse.getAmount());
+    }
+
+    public List<ReservationResponse> reservations() {
+        return reservationMapper.map(reservationRepository.findAll());
     }
 }

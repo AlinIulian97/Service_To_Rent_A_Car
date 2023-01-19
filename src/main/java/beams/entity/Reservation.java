@@ -1,15 +1,14 @@
 package beams.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Getter
@@ -23,12 +22,15 @@ public class Reservation {
     private Integer id;
 
     @Column(name = "date_of_reservation")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDate dateOfReservation;
 
     @Column(name = "date_from")
-    private  LocalDate dateFrom;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDate dateFrom;
 
     @Column(name = "date_to")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDate dateTo;
 
     @Column
@@ -43,7 +45,7 @@ public class Reservation {
     private Customer customer;
 
 
-    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL )
+    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
     private Refund refund;
 
 

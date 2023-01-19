@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 public class ReservationUpdateResponse {
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDate dateTo;
     private Double amount;
 

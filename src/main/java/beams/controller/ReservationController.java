@@ -7,6 +7,8 @@ import beams.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("reservation")
@@ -32,5 +34,10 @@ public class ReservationController {
     @PatchMapping({"{id}"})
     public void updateReservation(@PathVariable Integer id , @RequestBody ReservationUpdateResponse reservationUpdateResponse){
         reservationService.updateReservation(id, reservationUpdateResponse);
+    }
+
+    @GetMapping("/list")
+    public List<ReservationResponse> reservations(){
+        return reservationService.reservations();
     }
 }
