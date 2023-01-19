@@ -12,6 +12,4 @@ public class BranchDetailsResponse {
     private String addressCity;
     private List<EmployeeResponse> employees;
 
-
-
 }

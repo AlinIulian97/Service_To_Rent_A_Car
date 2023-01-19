@@ -15,6 +15,6 @@ public class BranchRequest {
 
     private Integer rentalId;
 
-    private RentalResponseForBranch rentalResponseForBranch;
+
 
 }
