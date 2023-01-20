@@ -1,5 +1,6 @@
 package beams.model.reservation;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,13 +17,13 @@ public class ReservationRequest {
 
     private Integer id;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateOfReservation;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateFrom;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateTo;
 
     private Double amount;

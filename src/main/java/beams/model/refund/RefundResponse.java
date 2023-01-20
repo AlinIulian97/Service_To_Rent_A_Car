@@ -21,5 +21,6 @@ public class RefundResponse {
     private ReservationCreateRefundResponse reservation;
     private EmployeeCreateRefundResponse employee;
     private Integer employeeId;
+    private Integer reservationId;
 
 }

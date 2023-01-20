@@ -8,39 +8,40 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<form action="#" th:action="@{/createReservation}" method="post">
+<form action="#" th:action="@{/createRefund}" method="post">
     <table class="table table-dark">
         <tr>
-            <td> Date of reservation :</td>
-            <td><input type="date" name="dateOfReservation" placeholder="Date of reservation" required></td>
+            <td> Comments :</td>
+            <td><input type="text" name="comments" placeholder="Comments"required></td>
         </tr>
         <tr>
-            <td> Car :</td>
-            <td><input type="text" name="carId" placeholder="Car" required></td>
+            <td> Employee :</td>
+            <td><input type="text" name="employeeId" placeholder="Employee " required></td>
         </tr>
         <tr>
-            <td> Amount :</td>
+            <td> Reservation :</td>
+            <td><input type="text" name="reservationId" placeholder="Reservation" required></td>
+        </tr>
+        <tr>
+            <td> Amount:</td>
             <td><input type="text" name="amount" placeholder="Amount" required></td>
         </tr>
         <tr>
-            <td> Customer :</td>
-            <td><input type="text" name="customerId" placeholder="Customer" required></td>
+            <td> Surcharge:</td>
+            <td><input type="text" name="surcharge" placeholder="Surcharge" required></td>
         </tr>
         <tr>
-            <td> Date From :</td>
-            <td><input type="date" name="dateFrom" placeholder="Date From" required></td>
+            <td> Return Date:</td>
+            <td><input type="date" name="returnDate" placeholder="Return Date" required></td>
         </tr>
-        <tr>
-            <td> Date to:</td>
-            <td><input type="date" name="dateTo" placeholder="Date To" required></td>
-        </tr>
+
     </table>
     <button type="submit" value="Create" class="btn btn-success">Create</button>
 </form>
 
-<form th:action="@{/listReservation}">
+<form th:action="@{/listRefund}">
     <div>
-        <button type="submit" class="btn btn-success">View all reservation</button>
+        <button type="submit" class="btn btn-success">View all refund</button>
     </div>
 </form>
 

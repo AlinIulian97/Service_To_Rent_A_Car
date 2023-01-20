@@ -7,6 +7,8 @@ import beams.service.RefundService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("refund")
 @RequiredArgsConstructor
@@ -32,6 +34,11 @@ public class RefundController {
     @PatchMapping({"{id}"})
     public void updateRefund(@PathVariable Integer id , @RequestBody  RefundUpdateResponse refundUpdateResponse){
         refundService.updateRefund(id , refundUpdateResponse);
+    }
+
+    @GetMapping("/list")
+    public List<RefundResponse> refundResponseList(){
+        return refundService.refunds();
     }
 
 }

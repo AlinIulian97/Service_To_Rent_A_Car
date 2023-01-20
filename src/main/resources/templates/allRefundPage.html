@@ -9,8 +9,8 @@
 </head>
 <body>
 <div>
-  <form th:if="${reservations.isEmpty() }">
-    <h3 style="color: snow; font-family: sans-serif"> No Reservations </h3>
+  <form th:if="${refund.isEmpty() }">
+    <h3 style="color: snow; font-family: sans-serif"> No Refund </h3>
   </form>
 </div>
 
@@ -18,53 +18,48 @@
   <table >
     <thead>
     <tr>
-      <th style="padding: 10px">Date of reservation</th>
-      <th style="padding: 10px">Car</th>
-      <th style="padding: 10px">Amount</th>
-      <th style="padding: 10px">Customer</th>
-      <th style="padding-left: 20px">Date From </th>
-      <th style="padding-left: 20px">Date to</th>
+      <th style="padding: 10px">Comments</th>
+      <th style="padding: 10px">Employee</th>
+      <th style="padding-left: 20px">Reservation</th>
+      <th style="padding-left: 20px">Surcharge</th>
+      <th style="padding-left: 20px">Return Date</th>
       <th style="padding: 10px">Update</th>
       <th style="padding: 10px">Delete</th>
     </tr>
     </thead>
     <tbody style="font-weight: bold">
-    <tr th:each="reservations: ${reservations}">
+    <tr th:each="refund: ${refund}">
+
       <td>
         <div>
-          <span th:text="${#temporals.format(reservations.getDateOfReservation() , 'yyyy-MM-dd')}">Date of reservation</span>
-        </div>
-      </td>
-      <td>
-        <div>
-          <span th:text="${reservations.getCarId()}">Car</span>
+          <span th:text="${refund.getComments()}">Comments</span>
         </div>
       </td>
 
       <td>
         <div>
-          <span th:text="${reservations.getAmount()}">Amount </span>
+          <span th:text="${refund.getEmployeeId()}">Employee</span>
         </div>
       </td>
 
       <td>
         <div>
-          <span th:text="${reservations.getCustomerId()}" style="padding-left: 20px">Customer</span>
+          <span th:text="${refund.getReservationId()}" style="padding-left: 20px">Reservation</span>
         </div>
       </td>
-
       <td>
         <div>
-          <span th:text="${#temporals.format(reservations.getDateFrom(), 'yyyy-MM-dd')}">Date From</span>
+          <span th:text="${refund.getSurcharge()}">Surcharge</span>
         </div>
       </td>
-
       <td>
         <div>
-          <span th:text="${#temporals.format(reservations.getDateTo(), 'yyyy-MM-dd')}">Date To</span>
+          <span th:text="${#temporals.format(refund.getReturnDate() , 'yyyy-MM-dd')}">Return Date</span>
         </div>
       </td>
 
+
+    </tr>
     </tbody>
   </table>
 </div>

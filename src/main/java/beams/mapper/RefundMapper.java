@@ -6,6 +6,8 @@ import beams.model.refund.RefundResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+
 
 @Mapper(uses = EmployeeMapper.class)
 public interface RefundMapper {
@@ -13,6 +15,9 @@ public interface RefundMapper {
     Refund map(RefundRequest refundRequest);
 
     @Mapping(target = "employeeId", source = "employee.id")
+    @Mapping(target ="reservationId" , source = "reservation.id")
     RefundResponse map(Refund refund);
+
+    List<RefundResponse> map(List<Refund> refund);
 
 }

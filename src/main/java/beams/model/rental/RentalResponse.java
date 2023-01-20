@@ -12,4 +12,6 @@ public class RentalResponse {
     private String contactAddress;
     private String owner;
     private String logoType;
+
+
 }

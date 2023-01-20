@@ -22,15 +22,12 @@ public class Reservation {
     private Integer id;
 
     @Column(name = "date_of_reservation")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDate dateOfReservation;
 
     @Column(name = "date_from")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDate dateFrom;
 
     @Column(name = "date_to")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDate dateTo;
 
     @Column
