@@ -57,4 +57,15 @@ public class EmployeeService {
 
         employeeUpdateResponse.setBranch(employeeToUpdate.getBranch());
     }
+
+    public Boolean ExistManager() {
+        for (EmployeeResponse employeeResponse : employees()) {
+            if (String.valueOf(employeeResponse.getType()).equals("MANAGER")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }

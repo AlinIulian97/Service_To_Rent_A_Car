@@ -1,6 +1,8 @@
 package beams.controller;
 
 import beams.entity.Employee;
+import beams.entity.enums.EmployeeEnum;
+import beams.exception.BusinessException;
 import beams.model.employee.EmployeeRequest;
 import beams.model.employee.EmployeeResponse;
 import beams.model.employee.EmployeeUpdateResponse;
@@ -19,6 +21,12 @@ public class EmployeeController {
 
     @PostMapping("/save")
     public EmployeeResponse saveEmployee(@RequestBody EmployeeRequest employeeRequest) {
+        if(employeeRequest.getType() == EmployeeEnum.EMPLOYEE){
+            employeeService.saveEmployee(employeeRequest);
+        }
+        else if (employeeService.ExistManager()){
+            throw new BusinessException("Manager already exist");
+        }
         return employeeService.saveEmployee(employeeRequest);
     }
 
@@ -42,4 +50,5 @@ public class EmployeeController {
     public List<EmployeeResponse> getAllEmployee(){
       return employeeService.employees();
     }
+
 }
