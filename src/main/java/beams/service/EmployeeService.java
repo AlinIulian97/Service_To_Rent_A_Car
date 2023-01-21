@@ -67,5 +67,14 @@ public class EmployeeService {
         return false;
     }
 
+    public Integer ManagerIdFound(EmployeeRequest employeeRequest) {
+        for (EmployeeResponse employeeResponse : employees()) {
+            if (String.valueOf(employeeResponse.getType()).equals("MANAGER") &&employeeResponse.getBranchId() == employeeRequest.getBranchId()) {
+                return employeeResponse.getBranchId();
+            }
+        }
+        return null;
+    }
+
 
 }

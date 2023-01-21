@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("employee")
@@ -24,7 +25,7 @@ public class EmployeeController {
         if(employeeRequest.getType() == EmployeeEnum.EMPLOYEE){
             employeeService.saveEmployee(employeeRequest);
         }
-        else if (employeeService.ExistManager()){
+        else if (employeeService.ExistManager() && Objects.equals(employeeService.ManagerIdFound(employeeRequest), employeeRequest.getBranchId())){
             throw new BusinessException("Manager already exist");
         }
         return employeeService.saveEmployee(employeeRequest);
