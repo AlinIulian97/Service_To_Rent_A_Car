@@ -26,7 +26,7 @@ public class EmployeeController {
             employeeService.saveEmployee(employeeRequest);
         }
         else if (employeeService.ExistManager() && Objects.equals(employeeService.ManagerIdFound(employeeRequest), employeeRequest.getBranchId())){
-            throw new BusinessException("Manager already exist");
+            throw new BusinessException("Manager already exist in this branch");
         }
         return employeeService.saveEmployee(employeeRequest);
     }

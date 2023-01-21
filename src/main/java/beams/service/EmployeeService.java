@@ -69,7 +69,7 @@ public class EmployeeService {
 
     public Integer ManagerIdFound(EmployeeRequest employeeRequest) {
         for (EmployeeResponse employeeResponse : employees()) {
-            if (String.valueOf(employeeResponse.getType()).equals("MANAGER") &&employeeResponse.getBranchId() == employeeRequest.getBranchId()) {
+            if (String.valueOf(employeeResponse.getType()).equals("MANAGER") && employeeResponse.getBranchId() == employeeRequest.getBranchId()) {
                 return employeeResponse.getBranchId();
             }
         }
