@@ -4,6 +4,7 @@ import beams.model.branch.BranchDetailsResponse;
 import beams.model.branch.BranchRequest;
 import beams.model.branch.BranchResponse;
 import beams.model.branch.BranchToUpdate;
+import beams.model.car.CarResponse;
 import beams.service.BranchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -33,18 +34,33 @@ public class BranchController {
     }
 
     @PatchMapping("{id}")
-    public void updateBranch(@PathVariable Integer id , @RequestBody BranchToUpdate branchToUpdate){
-        branchService.updateBranch(id ,branchToUpdate);
+    public void updateBranch(@PathVariable Integer id, @RequestBody BranchToUpdate branchToUpdate) {
+        branchService.updateBranch(id, branchToUpdate);
     }
 
     @DeleteMapping("{id}")
-    public void deleteBranch(@PathVariable Integer id){
+    public void deleteBranch(@PathVariable Integer id) {
         branchService.deleteBranch(id);
     }
 
     @GetMapping("/list")
-    public List<BranchResponse> branches(){
+    public List<BranchResponse> branches() {
         return branchService.branches();
+    }
+
+    @GetMapping("/listCarsAvailable")
+    public List<CarResponse> carsAvailable() {
+        return branchService.availableCars();
+    }
+
+    @GetMapping("/listOfBranch/{address}")
+    public List<BranchResponse> listBranchAddress(@PathVariable String address) {
+        return branchService.availableCarsInBranchSelected(address);
+    }
+
+    @GetMapping("/carAvailableAddress/{address}")
+    public List<CarResponse> CarsAvailableAddress(@PathVariable String address) {
+        return branchService.carsAvailableAddress(address);
     }
 
 }
