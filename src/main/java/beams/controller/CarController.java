@@ -1,5 +1,7 @@
 package beams.controller;
 
+import beams.entity.Car;
+import beams.model.branch.BranchResponse;
 import beams.model.car.CarRequest;
 import beams.model.car.CarResponse;
 import beams.model.car.CarResponseUpdate;
@@ -44,6 +46,11 @@ public class CarController {
     @PatchMapping("/update/{id}")
     public void updateById(@PathVariable Integer id, @RequestBody CarResponseUpdate carResponseUpdate) {
         carService.updateById(id, carResponseUpdate);
+    }
+
+    @PatchMapping("/changed/{carId}/{branchId}")
+    public void changedBranch(@PathVariable Integer carId , @PathVariable Integer branchId){
+       carService.changedBranch(carId , branchId);
     }
 }
 

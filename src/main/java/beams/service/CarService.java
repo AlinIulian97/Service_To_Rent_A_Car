@@ -1,9 +1,11 @@
 package beams.service;
 
 
+import beams.entity.Branch;
 import beams.entity.Car;
 import beams.exception.BusinessException;
 import beams.mapper.CarMapper;
+import beams.model.branch.BranchResponse;
 import beams.model.car.CarRequest;
 import beams.model.car.CarResponse;
 import beams.model.car.CarResponseUpdate;
@@ -80,7 +82,13 @@ public class CarService {
         carToUpdate.setMileage(carResponseUpdate.getMileage());
     }
 
-
+    public void changedBranch(Integer id , Integer branchId){
+        Car seatChanged = carRepository.findById(id).orElseThrow(
+                () -> new BusinessException("Car not found")
+        );
+        Branch branch = branchRepository.findById(branchId).orElseThrow(()-> new BusinessException("Branch not found"));
+        seatChanged.setBranch(branch);
+    }
 }
 
 
