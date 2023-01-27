@@ -18,7 +18,7 @@
   <table >
     <thead>
     <tr>
-      <th style="padding: 10px">Car Name</th>
+      <th>Car Name</th>
       <th style="padding: 10px">Model</th>
       <th style="padding: 10px">Body Type</th>
       <th style="padding-left: 20px">Branch ID</th>
@@ -26,8 +26,8 @@
       <th style="padding-left: 20px">Mileage</th>
       <th style="padding-left: 20px">Colour</th>
       <th style="padding-left: 20px">Status</th>
-      <th style="padding: 10px">Update</th>
       <th style="padding: 10px">Delete</th>
+      <th style="padding: 10px">Update</th>
     </tr>
     </thead>
     <tbody style="font-weight: bold">
@@ -74,6 +74,12 @@
         <div>
           <span th:text="${cars.getStatus()}">Status</span>
         </div>
+      </td>
+      <td>
+        <form th:action="@{/deleteCar}" method="post">
+          <input type="hidden" name="id" th:value="${cars.id}">
+          <button type="submit" style="background-color:red , padding-left: 20px "class="btn btn-danger"> Delete</button>
+        </form>
       </td>
     </tr>
     </tbody>

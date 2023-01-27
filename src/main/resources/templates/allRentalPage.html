@@ -10,7 +10,7 @@
 
 
 <div>
-    <form th:if="${rentals.isEmpty() }">
+    <form th:if="${rentals.isEmpty()}">
         <h3 style="color: snow; font-family: sans-serif"> No Rental </h3>
     </form>
 </div>
@@ -24,8 +24,8 @@
             <th style="padding-left: 20px">Contact Address</th>
             <th style="padding-left: 20px">Owner </th>
             <th style="padding-left: 20px">Logo Type</th>
-            <th style="padding-left: 20px">Update</th>
             <th style="padding-left: 20px">Delete</th>
+            <th style="padding-left: 20px">Update</th>
         </tr>
         </thead>
         <tbody style="font-weight: bold">
@@ -59,17 +59,17 @@
                 </div>
             </td>
 
-            <td>
-                <form th:action="@{/manicurist/goToUpdateManicuristPage}">
-                    <input type="hidden" name="id" th:value="${rentals.id}">
-                    <button type="submit" style="background-color: green" class="btn btn-primary btn-sm"> Update
-                    </button>
-                </form>
-            </td>
+
             <td>
                 <form th:action="@{/deleteRent}" method="post">
                     <input type="hidden" name="id" th:value="${rentals.id}">
-                    <button type="submit" style="background-color: red" class="btn btn-danger"> Delete</button>
+                    <button type="submit" style="background-color:red , padding-left: 20px "class="btn btn-danger"> Delete</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/rental/goToUpdateRental}">
+                    <input type="hidden" name="id" th:value="${rentals.id}">
+                    <button type="submit" style="background-color: blue " class="btn btn-danger"> Update</button>
                 </form>
             </td>
         </tr>

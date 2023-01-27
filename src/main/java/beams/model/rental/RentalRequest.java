@@ -1,15 +1,11 @@
 package beams.model.rental;
 
-import beams.entity.Branch;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @RequiredArgsConstructor

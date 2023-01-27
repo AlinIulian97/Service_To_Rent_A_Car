@@ -1,5 +1,6 @@
 package beams.controller.mvc;
 
+import beams.model.branch.BranchRequest;
 import beams.model.car.CarRequest;
 import beams.service.CarService;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +41,16 @@ public class CarWebController {
                 .status(request.getStatus())
                 .build();
         carService.saveCar(carRequest);
+        model.addAttribute("cars", carService.getAllCars());
+        return "allCarsPage";
+    }
+
+    @PostMapping("/deleteCar")
+    public String deleteCar(@ModelAttribute("deleteRequest")
+                               CarRequest carRequest,
+                               Model model) {
+
+        carService.delete(carRequest.getId());
         model.addAttribute("cars", carService.getAllCars());
         return "allCarsPage";
     }

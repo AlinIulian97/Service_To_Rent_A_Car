@@ -1,6 +1,7 @@
 package beams.controller.mvc;
 
 import beams.model.branch.BranchRequest;
+import beams.model.rental.RentalRequest;
 import beams.repository.RentalRepository;
 import beams.service.BranchService;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +40,16 @@ public class BranchWebController {
     @GetMapping("/listBranches")
     public String viewAllBranches(Model model){
         model.addAttribute("branches" , branchService.branches());
+        return "allBranchesPage";
+    }
+
+    @PostMapping("/deleteBranch")
+    public String deleteBranch(@ModelAttribute("deleteRequest")
+                             BranchRequest branchRequest,
+                             Model model) {
+
+        branchService.deleteBranch(branchRequest.getId());
+        model.addAttribute("branches", branchService.branches());
         return "allBranchesPage";
     }
 }

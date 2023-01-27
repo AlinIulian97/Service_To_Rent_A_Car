@@ -20,8 +20,8 @@
     <tr>
       <th style="padding: 10px">Address City</th>
       <th style="padding: 10px">Rental</th>
-      <th style="padding: 10px">Update</th>
       <th style="padding: 10px">Delete</th>
+      <th style="padding: 10px">Update</th>
     </tr>
     </thead>
     <tbody style="font-weight: bold">
@@ -35,6 +35,12 @@
         <div>
           <span th:text="${branches.getRentalId()}">Rental</span>
         </div>
+      </td>
+      <td>
+        <form th:action="@{/deleteBranch}" method="post">
+          <input type="hidden" name="id" th:value="${branches.id}">
+          <button type="submit" style="background-color:red , padding-left: 20px "class="btn btn-danger"> Delete</button>
+        </form>
       </td>
     </tbody>
   </table>

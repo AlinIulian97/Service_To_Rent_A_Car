@@ -13,6 +13,8 @@ import java.sql.Date;
 @Builder
 public class RentalUpdateResponse {
 
+    private Integer id;
+
     private String owner;
 
     private String contactAddress;
