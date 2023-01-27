@@ -2,7 +2,6 @@ package beams.model.reservation;
 
 import beams.model.car.CarResponseForReservation;
 import beams.model.customer.CustomerResponseForReservation;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 

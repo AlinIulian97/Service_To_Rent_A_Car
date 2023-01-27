@@ -1,5 +1,6 @@
 package beams.controller.mvc;
 
+import beams.model.customer.CustomerRequest;
 import beams.model.refund.RefundRequest;
 import beams.service.RefundService;
 import lombok.RequiredArgsConstructor;
@@ -38,6 +39,16 @@ public class RefundPage {
     @GetMapping("/listRefund")
     public String getAllRefund(Model model){
         model.addAttribute("refund" , refundService.refunds());
+        return "allRefundPage";
+    }
+
+    @PostMapping("/deleteRefund")
+    public String deleteRefund(@ModelAttribute("deleteRequest")
+                                 RefundRequest refundRequest,
+                                 Model model) {
+
+        refundService.deleteRefund(refundRequest.getId());
+        model.addAttribute("refunds", refundService.refunds());
         return "allRefundPage";
     }
 

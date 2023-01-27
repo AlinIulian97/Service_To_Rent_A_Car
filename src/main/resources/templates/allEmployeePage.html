@@ -22,8 +22,8 @@
                 <th style="padding: 10px">Last Name</th>
                 <th style="padding: 10px">Type</th>
                 <th style="padding-left: 20px">Branch ID</th>
-                <th style="padding: 10px">Update</th>
                 <th style="padding: 10px">Delete</th>
+                <th style="padding: 10px">Update</th>
             </tr>
             </thead>
             <tbody style="font-weight: bold">
@@ -50,7 +50,12 @@
                         <span th:text="${employees.getBranchId()}" style="padding-left: 20px">Branch Id</span>
                     </div>
                 </td>
-
+                <td>
+                    <form th:action="@{/deleteEmployee}" method="post">
+                        <input type="hidden" name="id" th:value="${employees.id}">
+                        <button type="submit" style="background-color:red , padding-left: 20px "class="btn btn-danger"> Delete</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>

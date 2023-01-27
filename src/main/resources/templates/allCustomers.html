@@ -50,6 +50,12 @@
           <span th:text="${customers.getAddress()}" style="padding-left: 20px">Address</span>
         </div>
       </td>
+      <td>
+        <form th:action="@{/deleteCustomer}" method="post">
+          <input type="hidden" name="id" th:value="${customers.id}">
+          <button type="submit" style="background-color:red , padding-left: 20px "class="btn btn-danger"> Delete</button>
+        </form>
+      </td>
     </tr>
     </tbody>
   </table>

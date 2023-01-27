@@ -16,8 +16,7 @@ import java.time.LocalDate;
 public class RefundRequest {
 
     private Integer id;
-
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate returnDate;
 
     private Double surcharge;

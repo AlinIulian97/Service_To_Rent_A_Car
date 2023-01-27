@@ -8,11 +8,11 @@
   <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div>
-  <form th:if="${refund.isEmpty() }">
-    <h3 style="color: snow; font-family: sans-serif"> No Refund </h3>
-  </form>
-</div>
+<!--<div>-->
+<!--  <form th:if="${refund.isEmpty() }">-->
+<!--    <h3 style="color: snow; font-family: sans-serif"> No Refund </h3>-->
+<!--  </form>-->
+<!--</div>-->
 
 <div style="padding: 5px">
   <table >
@@ -23,8 +23,8 @@
       <th style="padding-left: 20px">Reservation</th>
       <th style="padding-left: 20px">Surcharge</th>
       <th style="padding-left: 20px">Return Date</th>
-      <th style="padding: 10px">Update</th>
       <th style="padding: 10px">Delete</th>
+      <th style="padding: 10px">Update</th>
     </tr>
     </thead>
     <tbody style="font-weight: bold">
@@ -58,6 +58,12 @@
         </div>
       </td>
 
+      <td>
+        <form th:action="@{/deleteRefund}" method="post">
+          <input type="hidden" name="id" th:value="${refund.id}">
+          <button type="submit" style="background-color:red , padding-left: 20px "class="btn btn-danger"> Delete</button>
+        </form>
+      </td>
 
     </tr>
     </tbody>

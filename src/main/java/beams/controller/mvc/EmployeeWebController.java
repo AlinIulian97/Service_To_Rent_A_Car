@@ -2,6 +2,7 @@ package beams.controller.mvc;
 
 import beams.entity.enums.EmployeeEnum;
 import beams.exception.BusinessException;
+import beams.model.customer.CustomerRequest;
 import beams.model.employee.EmployeeRequest;
 import beams.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
@@ -50,6 +51,16 @@ private final EmployeeService employeeService;
     public String getAllEmployee(Model model){
         model.addAttribute("employees" , employeeService.employees());
     return "allEmployeePage";
+    }
+
+    @PostMapping("/deleteEmployee")
+    public String deleteEmployee(@ModelAttribute("deleteRequest")
+                                 EmployeeRequest employeeRequest,
+                                 Model model) {
+
+        employeeService.deleteEmployee(employeeRequest.getId());
+        model.addAttribute("employees", employeeService.employees());
+        return "allEmployeePage";
     }
 
 }

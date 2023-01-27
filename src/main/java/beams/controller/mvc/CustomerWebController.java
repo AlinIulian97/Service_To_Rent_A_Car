@@ -1,5 +1,6 @@
 package beams.controller.mvc;
 
+import beams.model.car.CarRequest;
 import beams.model.customer.CustomerRequest;
 import beams.service.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,16 @@ public class CustomerWebController {
 
     @GetMapping("/viewCustomers")
     public String getAllCustomers(Model model) {
+        model.addAttribute("customers", customerService.customers());
+        return "allCustomers";
+    }
+
+    @PostMapping("/deleteCustomer")
+    public String deleteCustomer(@ModelAttribute("deleteRequest")
+                            CustomerRequest customerRequest,
+                            Model model) {
+
+        customerService.deleteCustomer(customerRequest.getId());
         model.addAttribute("customers", customerService.customers());
         return "allCustomers";
     }

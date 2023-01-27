@@ -1,5 +1,6 @@
 package beams.controller.mvc;
 
+import beams.model.refund.RefundRequest;
 import beams.model.reservation.ReservationRequest;
 import beams.service.ReservationService;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +42,16 @@ public class ReservationWebController {
         reservationService.saveReservation(reservationRequest);
         model.addAttribute("reservations", reservationService.reservations());
 
+        return "allReservationPage";
+    }
+
+    @PostMapping("/deleteReservation")
+    public String deleteReservation(@ModelAttribute("deleteRequest")
+                               ReservationRequest reservationRequest,
+                               Model model) {
+
+        reservationService.deleteReservation(reservationRequest.getId());
+        model.addAttribute("reservations", reservationService.reservations());
         return "allReservationPage";
     }
 

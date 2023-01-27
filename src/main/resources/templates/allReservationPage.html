@@ -24,8 +24,8 @@
       <th style="padding: 10px">Customer</th>
       <th style="padding-left: 20px">Date From </th>
       <th style="padding-left: 20px">Date to</th>
-      <th style="padding: 10px">Update</th>
       <th style="padding: 10px">Delete</th>
+      <th style="padding: 10px">Update</th>
     </tr>
     </thead>
     <tbody style="font-weight: bold">
@@ -64,7 +64,12 @@
           <span th:text="${#temporals.format(reservations.getDateTo(), 'yyyy-MM-dd')}">Date To</span>
         </div>
       </td>
-
+      <td>
+        <form th:action="@{/deleteReservation}" method="post">
+          <input type="hidden" name="id" th:value="${reservations.id}">
+          <button type="submit" style="background-color:red , padding-left: 20px "class="btn btn-danger"> Delete</button>
+        </form>
+      </td>
     </tbody>
   </table>
 </div>
