@@ -1,7 +1,9 @@
 package beams.controller.mvc;
 
 import beams.model.branch.BranchRequest;
+import beams.model.branch.BranchToUpdate;
 import beams.model.rental.RentalRequest;
+import beams.model.rental.RentalUpdateResponse;
 import beams.repository.RentalRepository;
 import beams.service.BranchService;
 import lombok.RequiredArgsConstructor;
@@ -51,5 +53,20 @@ public class BranchWebController {
         branchService.deleteBranch(branchRequest.getId());
         model.addAttribute("branches", branchService.branches());
         return "allBranchesPage";
+    }
+
+    @PostMapping("/branch/update-branch")
+    public String branchUpdate(@ModelAttribute BranchToUpdate request,
+                               Model model) {
+        branchService.updateBranch(request.getId(),  request);
+        model.addAttribute("branches", branchService.branches());
+        return "allBranchesPage";
+    }
+
+    @GetMapping("/branch/goToUpdateBranch")
+    public String goToUpdateBranch(@ModelAttribute(value = "updateRequest") BranchToUpdate request, Model model) {
+        model.addAttribute("branchId", request.getId());
+        model.addAttribute("servicesFromDB", branchService.branches());
+        return "updateBranchPage";
     }
 }

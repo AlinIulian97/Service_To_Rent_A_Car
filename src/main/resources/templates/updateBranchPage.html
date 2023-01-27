@@ -12,20 +12,18 @@
 
 <div class="container text-center" style="padding-top: 50px">
     <div style="text-align: center">
-        <h2 style="color: Black; font-family: sans-serif"> Change rental owner and Address </h2>
+        <h2 style="color: Black; font-family: sans-serif"> Change Branch Address </h2>
     </div>
     <div class="container text-center">
-        <form th:action="@{/rental/update-rental}" method="post"
+        <form th:action="@{/branch/update-branch}" method="post"
               style="max-width: 600px; margin: 0 auto ">
             <div class="m-3">
                 <div class="form-group row">
                     <label style="background-color: black; display: flex; color: snow"
-                           class="col-form-label col-4"> Rental
+                           class="col-form-label col-4"> Branch Address
                     </label>
-                    <input type="hidden" name="id" th:value="${rentalId}">
-                    <input type="hidden" name="owner" th:value="${owner}">
-                    <td><input type="text" name="owner" placeholder="owner" required></td>
-                    <td><input type="text" name="contactAddress" placeholder="Address" required></td>
+                    <input type="hidden" name="id" th:value="${branchId}">
+                    <td><input type="text" name="addressCity" placeholder="Address" required></td>
                 </div>
             </div>
             <div style="display: inline-block; padding: 10px">
@@ -34,7 +32,7 @@
                 </button>
             </div>
         </form>
-        <form th:action="@{/rentPage/allRentalPage}">
+        <form th:action="@{/listBranches}">
             <button style="background-color: black; color: snow ; display: inline-block;" type="submit" class="btn btn-danger">
                 Cancel
             </button>
