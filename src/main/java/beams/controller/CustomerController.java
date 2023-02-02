@@ -3,6 +3,7 @@ package beams.controller;
 import beams.model.customer.CustomerRequest;
 import beams.model.customer.CustomerResponse;
 import beams.model.customer.UpdateCustomerResponse;
+import beams.model.employee.EmployeeResponse;
 import beams.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,11 @@ public class CustomerController {
     @PatchMapping("{id}")
     public void updateCustomer(@PathVariable Integer id, @RequestBody UpdateCustomerResponse customerUpdateResponse) {
         customerService.updateCustomer(customerUpdateResponse, id);
+    }
+
+    @GetMapping("{id}")
+    public CustomerResponse findById(@PathVariable Integer id) {
+        return customerService.findById(id);
     }
 
     @GetMapping("/list")

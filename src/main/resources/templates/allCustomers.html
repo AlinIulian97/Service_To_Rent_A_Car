@@ -22,8 +22,8 @@
       <th style="padding: 10px">Name</th>
       <th style="padding-left: 20px">Email</th>
       <th style="padding-left: 20px">Address</th>
-      <th style="padding: 10px">Update</th>
       <th style="padding: 10px">Delete</th>
+      <th style="padding: 10px">Update</th>
     </tr>
     </thead>
     <tbody style="font-weight: bold">
@@ -55,6 +55,9 @@
           <input type="hidden" name="id" th:value="${customers.id}">
           <button type="submit" style="background-color:red , padding-left: 20px "class="btn btn-danger"> Delete</button>
         </form>
+      </td>
+      <td>
+          <button type="submit" style="background-color: blue " class="btn btn-danger"> Update</button>
       </td>
     </tr>
     </tbody>
