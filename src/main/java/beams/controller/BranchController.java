@@ -4,7 +4,6 @@ import beams.model.branch.BranchDetailsResponse;
 import beams.model.branch.BranchRequest;
 import beams.model.branch.BranchResponse;
 import beams.model.branch.BranchToUpdate;
-import beams.model.car.CarResponse;
 import beams.service.BranchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -48,19 +47,16 @@ public class BranchController {
         return branchService.branches();
     }
 
-    @GetMapping("/listCarsAvailable")
-    public List<CarResponse> carsAvailable() {
-        return branchService.availableCars();
-    }
+
 
     @GetMapping("/listOfBranch/{address}")
     public List<BranchResponse> listBranchAddress(@PathVariable String address) {
         return branchService.availableCarsInBranchSelected(address);
     }
 
-    @GetMapping("/carAvailableAddress/{address}")
-    public List<CarResponse> CarsAvailableAddress(@PathVariable String address) {
-        return branchService.carsAvailableAddress(address);
+    @GetMapping("/listOfBranchStream/{address}")
+    public List<BranchResponse> listBranchAddressStream(@PathVariable String address) {
+        return branchService.availableCarsInBranchSelectedStream(address);
     }
 
 }

@@ -1,7 +1,6 @@
 package beams.controller;
 
 import beams.entity.Car;
-import beams.model.branch.BranchResponse;
 import beams.model.car.CarRequest;
 import beams.model.car.CarResponse;
 import beams.model.car.CarResponseUpdate;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("car")
@@ -52,5 +52,26 @@ public class CarController {
     public void changedBranch(@PathVariable Integer carId , @PathVariable Integer branchId){
        carService.changedBranch(carId , branchId);
     }
+
+    @GetMapping("/carAvailableAddress/{address}")
+    public List<CarResponse> CarsAvailableAddress(@PathVariable String address) {
+        return carService.carsAvailableAddress(address);
+    }
+
+    @GetMapping("/listCarsAvailable")
+    public List<CarResponse> carsAvailable() {
+        return carService.availableCars();
+    }
+
+    @GetMapping("/listCarsStream")
+    public List<CarResponse> carsAvailableStream(){
+        return carService.availableCarsStreamList();
+    }
+
+    @GetMapping("/carAvailableAddress2/{address}")
+    public Stream<CarResponse> carResponseStream(@PathVariable  String address){
+        return carService.carsAvailableAddress2(address);
+    }
+
 }
 

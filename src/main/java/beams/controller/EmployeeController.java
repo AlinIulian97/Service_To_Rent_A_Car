@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 
 @RestController
 @RequestMapping("employee")
@@ -22,10 +23,9 @@ public class EmployeeController {
 
     @PostMapping("/save")
     public EmployeeResponse saveEmployee(@RequestBody EmployeeRequest employeeRequest) {
-        if(employeeRequest.getType() == EmployeeEnum.EMPLOYEE){
+        if (employeeRequest.getType() == EmployeeEnum.EMPLOYEE) {
             employeeService.saveEmployee(employeeRequest);
-        }
-        else if (employeeService.ExistManager() && Objects.equals(employeeService.ManagerIdFound(employeeRequest), employeeRequest.getBranchId())){
+        } else if (employeeService.ExistManager() && Objects.equals(employeeService.ManagerIdFound(employeeRequest), employeeRequest.getBranchId())) {
             throw new BusinessException("Manager already exist in this branch");
         }
         return employeeService.saveEmployee(employeeRequest);
@@ -48,8 +48,12 @@ public class EmployeeController {
     }
 
     @GetMapping("/list")
-    public List<EmployeeResponse> getAllEmployee(){
-      return employeeService.employees();
+    public List<EmployeeResponse> getAllEmployee() {
+        return employeeService.employees();
+    }
+    @GetMapping("/stream/{id}")
+    public EmployeeResponse employeeResponse(@PathVariable Integer id) {
+        return employeeService.findByIdInterfaces().apply(id);
     }
 
 }

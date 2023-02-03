@@ -1,5 +1,6 @@
 package beams.service;
 
+import beams.interfacesForToGet.GetList;
 import beams.entity.Employee;
 import beams.exception.BusinessException;
 import beams.mapper.EmployeeMapper;
@@ -13,11 +14,14 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.function.Function;
+
+import static beams.entity.enums.EmployeeEnum.*;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class EmployeeService {
+public class EmployeeService implements GetList<EmployeeResponse> {
 
     private final EmployeeRepository employeeRepository;
     private final EmployeeMapper employeeMapper;
@@ -67,6 +71,13 @@ public class EmployeeService {
         return false;
     }
 
+    public Boolean ExistManagerStream(){
+        return employees()
+                .stream()
+                .anyMatch(employeeResponse
+                        -> employeeResponse.getType() == MANAGER);
+    }
+
     public Integer ManagerIdFound(EmployeeRequest employeeRequest) {
         for (EmployeeResponse employeeResponse : employees()) {
             if (String.valueOf(employeeResponse.getType()).equals("MANAGER") && employeeResponse.getBranchId() == employeeRequest.getBranchId()) {
@@ -76,5 +87,21 @@ public class EmployeeService {
         return null;
     }
 
+    @Override
+    public List<EmployeeResponse> getAllList() {
+        return employeeMapper.map(employeeRepository.findAll());
+    }
+
+    @Override
+    public Function<Integer, EmployeeResponse> findByIdInterfaces() {
+        return id -> employees()
+                .stream()
+                .filter(employeeResponse
+                        -> employeeResponse.getId().equals(id))
+                .findFirst()
+                .orElseThrow(()
+                        -> new BusinessException("No match"));
+
+    }
 
 }
