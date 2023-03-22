@@ -1,7 +1,9 @@
 package beams.entity;
 
+import beams.entity.enums.CarModelEnum;
 import beams.entity.enums.CarStatusEnum;
 import lombok.*;
+import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -40,8 +42,8 @@ public class Car {
     @Column(name = "mileage")
     private int mileage;
 
-    @Column(name = "model")
-    private String model;
+    @Enumerated(EnumType.STRING)
+    private CarModelEnum model;
 
     @OneToMany(cascade = {CascadeType.ALL},
             mappedBy = "car")

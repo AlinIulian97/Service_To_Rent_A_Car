@@ -51,6 +51,7 @@ public class EmployeeController {
     public List<EmployeeResponse> getAllEmployee() {
         return employeeService.employees();
     }
+
     @GetMapping("/stream/{id}")
     public EmployeeResponse employeeResponse(@PathVariable Integer id) {
         return employeeService.findByIdInterfaces().apply(id);

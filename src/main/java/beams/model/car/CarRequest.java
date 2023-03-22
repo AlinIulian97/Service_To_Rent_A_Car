@@ -1,5 +1,6 @@
 package beams.model.car;
 
+import beams.entity.enums.CarModelEnum;
 import beams.entity.enums.CarStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,8 +35,8 @@ public class CarRequest {
 
     private int mileage;
 
-    @NotBlank(message = "Invalid  model")
-    private String model;
+    @Enumerated(EnumType.STRING)
+    private CarModelEnum model;
 
     private Integer branchId;
 

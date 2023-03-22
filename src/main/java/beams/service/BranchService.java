@@ -32,7 +32,6 @@ public class BranchService {
     public BranchResponse saveBranch(BranchRequest branchRequest) {
 
         Branch branchToSave = branchMapper.map(branchRequest);
-
         branchToSave.setRental(rentalRepository.findById(branchRequest.getRentalId()).orElseThrow(
                 () -> new BusinessException("Rental ont found")
         ));

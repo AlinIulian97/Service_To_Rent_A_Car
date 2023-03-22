@@ -39,13 +39,10 @@ public class CarService {
     public CarResponse saveCar(CarRequest carRequest) {
         checkDuplicate(carRequest);
         Car carToSave = carMapper.map(carRequest);
-
         carToSave.setBranch(branchRepository.findById(carRequest.getBranchId()).orElseThrow(
                 () -> new BusinessException("Branch not found")
         ));
-
         carRepository.save(carToSave);
-
         return carMapper.map(carToSave);
     }
 
@@ -117,9 +114,6 @@ public class CarService {
                 .toList();
     }
 
-
-
-
     public List<CarResponse> carsAvailableAddress(String address) {
         List<CarResponse> list = new ArrayList<>();
         for (CarResponse carResponse : availableCars()) {
@@ -146,6 +140,7 @@ public class CarService {
                         -> branchesMap
                         .containsKey(carResponse.getBranchId()));
     }
+
 }
 
 

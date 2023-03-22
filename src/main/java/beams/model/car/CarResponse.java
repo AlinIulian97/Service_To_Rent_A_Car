@@ -1,5 +1,6 @@
 package beams.model.car;
 
+import beams.entity.enums.CarModelEnum;
 import beams.entity.enums.CarStatusEnum;
 import lombok.Data;
 
@@ -13,7 +14,7 @@ public class CarResponse {
     private String carName;
     private String colour;
     private int mileage;
-    private String model;
+    private CarModelEnum model;
 
     private Integer branchId;
     private String branchAddressCity;
